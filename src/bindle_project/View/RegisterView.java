@@ -37,7 +37,7 @@ public class RegisterView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Name = new javax.swing.JTextField();
         Email = new javax.swing.JTextField();
-        Password = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
         ConfirmPassword = new javax.swing.JPasswordField();
         show1 = new javax.swing.JButton();
         show2 = new javax.swing.JButton();
@@ -84,12 +84,12 @@ public class RegisterView extends javax.swing.JFrame {
         getContentPane().add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 240, 30));
         getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 240, 30));
 
-        Password.addActionListener(new java.awt.event.ActionListener() {
+        password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordActionPerformed(evt);
+                passwordActionPerformed(evt);
             }
         });
-        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 240, 30));
+        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 240, 30));
 
         ConfirmPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,9 +115,9 @@ public class RegisterView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NameActionPerformed
 
-    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordActionPerformed
+    }//GEN-LAST:event_passwordActionPerformed
 
     private void ConfirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmPasswordActionPerformed
         // TODO add your handling code here:
@@ -162,7 +162,6 @@ public class RegisterView extends javax.swing.JFrame {
     private javax.swing.JPasswordField ConfirmPassword;
     private javax.swing.JTextField Email;
     private javax.swing.JTextField Name;
-    private javax.swing.JPasswordField Password;
     private javax.swing.JButton RegisterButton;
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
@@ -171,6 +170,7 @@ public class RegisterView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel logo;
+    private javax.swing.JPasswordField password;
     private javax.swing.JButton show1;
     private javax.swing.JButton show2;
     // End of variables declaration//GEN-END:variables
@@ -185,9 +185,19 @@ public javax.swing.JPasswordField getPasswordField(){
 return ConfirmPassword;
 } 
 public javax.swing.JPasswordField getConfirmPassword(){
-return Password;
+return password;
 }
 public void registerUser(ActionListener listener){
     RegisterButton.addActionListener(listener);
    
-}}
+}
+public void showPasswordButtonListener(ActionListener listener){
+show1.addActionListener(listener);}
+public void tooglePasswordField(boolean visible){
+password.setEchoChar(visible ? (char) 0:'*');
+show1.setText(visible ? "Hide":"Show");}
+public void showPasswordButtonListener1(ActionListener listener){
+show2.addActionListener(listener);}
+public void tooglePasswordField1(boolean visible){
+password.setEchoChar(visible ? (char) 0:'*');
+show2.setText(visible ? "Hide":"Show");}}
