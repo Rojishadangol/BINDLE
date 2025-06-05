@@ -17,10 +17,16 @@ import javax.swing.JOptionPane;
  */
 public class RegisterController {
     RegisterView view= new RegisterView();
+        private boolean isPasswordVisisble=false;
+
     public RegisterController(RegisterView view){
     this.view=view;
     RegisterUser register = new RegisterUser();
     this.view.registerUser(new RegisterUser());
+    view.showPasswordButtonListener(new ShowPasswordListener());
+        view.showPasswordButtonListener1(new ShowPasswordListener1());
+
+
     }
     public void open(){
     view.setVisible(true);
@@ -56,4 +62,20 @@ public class RegisterController {
             }
     }
     }}
-}
+    class ShowPasswordListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isPasswordVisisble= !isPasswordVisisble;
+view.tooglePasswordField(isPasswordVisisble);        
+view.tooglePasswordField(isPasswordVisisble);        
+
+        }}
+        class ShowPasswordListener1 implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isPasswordVisisble= !isPasswordVisisble;
+view.tooglePasswordField(isPasswordVisisble);  }
+    
+    }}
