@@ -2,95 +2,83 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package bindle.project.dao;
-import database.DatabaseConnection;
-import searchmodel.java;
+package bindle.project.Dao;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import bindle.project.Database.MySqlConnection;
+import bindle.project.model.LoginRequest;
+import bindle.project.model.UserData;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
- * @author ushadhakal
+ * @author acer
  */
-public class userdao {
-    public userdao() {
-        createTableIfNotExists();
-        seedSampleData();
+public class UserDao {
+    MySqlConnection MySQL=new MySqlConnection();
+    public boolean register(UserData user){
+    String query="INSERT INTO users(name,email,password) VALUES()";
+    Connection conn=MySQL.openConnection();
+    try{
+    PreparedStatement stmnt= conn.prepareStatement(query);
+    stmnt.setString(2,user.getEmail());
+    stmnt.setString(3,user.getPassword());
+    int result = stmnt.executeUpdate();
+    return result>0;
     }
-
-    public void createTableIfNotExists() {
-        String sql = "CREATE TABLE IF NOT EXISTS books (" +
-                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                     "title TEXT NOT NULL," +
-                     "author TEXT," +
-                     "category TEXT," +
-                     "price REAL," +
-                     "condition TEXT)";
-        try (Connection conn = database.getConnection();
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void seedSampleData() {
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            ResultSet rs = conn.createStatement().executeQuery("SELECT COUNT(*) AS count FROM books");
-            if (rs.next() && rs.getInt("count") > 0) return;
-
-            String sql = "INSERT INTO books (title, author, category, price, condition) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-
-            String[][] sampleBooks = {
-                {"The Alchemist", "Paulo Coelho", "Fiction", "5.0", "Good"},
-                {"A Brief History of Time", "Stephen Hawking", "Science", "7.5", "Excellent"},
-                {"Tarot for Beginners", "Lisa Chamberlain", "Spiritual", "4.0", "Fair"}
-            };
-
-            for (String[] book : sampleBooks) {
-                ps.setString(1, book[0]);
-                ps.setString(2, book[1]);
-                ps.setString(3, book[2]);
-                ps.setDouble(4, Double.parseDouble(book[3]));
-                ps.setString(5, book[4]);
-                ps.addBatch();
-            }
-            ps.executeBatch();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public List<Book> searchBooks(String keyword) {
-        List<Book> books = new ArrayList<>();
-        String sql = "SELECT * FROM books WHERE title LIKE ? OR author LIKE ? OR category LIKE ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            String searchTerm = "%" + keyword + "%";
-            ps.setString(1, searchTerm);
-            ps.setString(2, searchTerm);
-            ps.setString(3, searchTerm);
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                books.add(new Book(
-                    rs.getInt("id"),
-                    rs.getString("title"),
-                    rs.getString("author"),
-                    rs.getString("category"),
-                    rs.getDouble("price"),
-                    rs.getString("condition")
-                ));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return books;
-    }
-    
+    catch(SQLException e){
+    return false;}
+        finally{
+MySQL.closeConnection(conn);
 }
+}
+    public UserData login(LoginRequest loginReq){
+        String query="SELECT * FROM users WHERE email=? and fpassword=?";
+                Connection conn= MySQL.openConnection();
+                try{
+                    PreparedStatement stmnt= conn.prepareStatement(query);
+                    stmnt.setString(1,loginReq.getEmail());
+                    stmnt.setString(2,loginReq.getPassword());
+                    ResultSet result=stmnt.executeQuery();
+                    if (result.next()){
+                         String email=result.getString("email");
+                    
+                    String password=result.getString("fpassword");
+                    
+                    UserData user= new UserData(email,password);
+                    return user;
+                    }
+                    else{
+                            return null;
+                    }
+                    
+                }
+                catch(Exception e){
+                    return null;
+                }
+                finally{
+                MySQL.closeConnection(conn);}
+                
+}
+    public boolean checkEmail(String email){
+    String query="SELECT * FROM users WHERE email=?";
+    Connection conn= MySQL.openConnection();
+    
+    try{
+PreparedStatement stmnt= conn.prepareStatement(query);
+stmnt.setString(1,email);
+ResultSet result=stmnt.executeQuery();
+if(result.next()){
+return true;
+}
+    else{
+return false;}}
+catch(Exception e){
+return false;}
+finally{
+MySQL.closeConnection(conn);}}
 
+
+}
