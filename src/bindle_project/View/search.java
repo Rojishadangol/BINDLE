@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package bindle_project.View;
-import controller.BookController;
-import model.Book;
 /**
  *
  * @author ushadhakal
