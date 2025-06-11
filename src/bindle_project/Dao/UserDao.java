@@ -15,6 +15,10 @@ import java.sql.SQLException;
  * @author acer
  */
 public class UserDao {
+
+    public static boolean updatePassword(String email, String newPass) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     public boolean register(UserData user){
         MySqlConnection MySql=new MySqlConnection();
     String query="INSERT INTO users(name,email,password) VALUES()";
