@@ -6,12 +6,12 @@ package bindle_project.View;
 
 /**
  *
- * @author diyan
+ * @author acer
  */
 public class ForgetPassword extends javax.swing.JFrame {
 
     /**
-     * Creates new form forgetpassword
+     * Creates new form ForgetPassword
      */
     public ForgetPassword() {
         initComponents();
@@ -26,97 +26,21 @@ public class ForgetPassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        newPassword = new javax.swing.JPasswordField();
-        confirmPassword = new javax.swing.JPasswordField();
-        reset = new javax.swing.JButton();
-        newPasswordShow = new javax.swing.JButton();
-        confirmShow = new javax.swing.JButton();
-        cancel = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
-
-        jPasswordField2.setText("jPasswordField2");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("New Password");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 93, -1));
-
-        jLabel3.setText("Confirm password");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
-        getContentPane().add(newPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 151, -1));
-
-        confirmPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmPasswordActionPerformed(evt);
-            }
-        });
-        getContentPane().add(confirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 204, 151, -1));
-
-        reset.setBackground(new java.awt.Color(204, 102, 255));
-        reset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        reset.setForeground(new java.awt.Color(255, 255, 255));
-        reset.setText("Reset");
-        getContentPane().add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 75, -1));
-
-        newPasswordShow.setText("Show");
-        getContentPane().add(newPasswordShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, -1, -1));
-
-        confirmShow.setText("Show");
-        getContentPane().add(confirmShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, -1, -1));
-
-        cancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cancel.setText("Cancel");
-        getContentPane().add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, -1, -1));
-
-        jLabel4.setText("Email");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 51, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/Screenshot 2025-05-28 083320.png"))); // NOI18N
-        jLabel1.setText("Reset Password");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(141, 141, 141))
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void confirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,15 +59,14 @@ public class ForgetPassword extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(forgetpassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(forgetpassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(forgetpassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(forgetpassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -155,18 +78,5 @@ public class ForgetPassword extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancel;
-    private javax.swing.JPasswordField confirmPassword;
-    private javax.swing.JButton confirmShow;
-    private javax.swing.JTextField email;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField newPassword;
-    private javax.swing.JButton newPasswordShow;
-    private javax.swing.JButton reset;
     // End of variables declaration//GEN-END:variables
 }
