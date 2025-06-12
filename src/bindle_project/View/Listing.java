@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import bindle_project.Controller.NavigationController;
+
+
 
 /**
  *
@@ -580,6 +583,10 @@ public class Listing extends javax.swing.JFrame {
     private void LblMyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LblMyListActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LblMyListActionPerformed
+private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {
+    NavigationController navController = new NavigationController();
+    navController.goToCartScreen();
+}
 
     
     public static void main(String args[]) {
