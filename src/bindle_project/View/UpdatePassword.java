@@ -4,6 +4,9 @@
  */
 package bindle_project.View;
 
+
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author diyan
@@ -26,113 +29,85 @@ public class UpdatePassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        NewPassword = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        OldPassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField3 = new javax.swing.JPasswordField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        ConfirmPassword = new javax.swing.JPasswordField();
+        Reset = new javax.swing.JButton();
+        Show1 = new javax.swing.JButton();
+        Show2 = new javax.swing.JButton();
+        Show3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Change Password");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 77, 245, -1));
 
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("New Password");
-
-        jPasswordField1.setText("jPasswordField1");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 209, -1, -1));
+        getContentPane().add(NewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 206, 188, -1));
 
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("Old Password");
-
-        jPasswordField2.setText("jPasswordField2");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 172, 79, -1));
+        getContentPane().add(OldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 159, 189, 29));
 
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("Confirm Password");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 250, -1, -1));
+        getContentPane().add(ConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 247, 188, -1));
 
-        jPasswordField3.setText("jPasswordField3");
+        Reset.setBackground(new java.awt.Color(0, 102, 102));
+        Reset.setForeground(new java.awt.Color(255, 255, 255));
+        Reset.setText("Reset");
+        getContentPane().add(Reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 301, 75, -1));
 
-        jCheckBox1.setText("Show");
+        Show1.setForeground(new java.awt.Color(0, 102, 102));
+        Show1.setText("Show");
+        Show1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Show1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Show1, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 165, 75, -1));
 
-        jCheckBox2.setText("Show");
+        Show2.setForeground(new java.awt.Color(0, 102, 102));
+        Show2.setText("Show");
+        getContentPane().add(Show2, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 206, 75, -1));
 
-        jCheckBox3.setText("Show");
+        Show3.setForeground(new java.awt.Color(0, 102, 102));
+        Show3.setText("Show");
+        getContentPane().add(Show3, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 247, 75, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Reset");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(jPasswordField3))))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(214, 214, 214))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCheckBox3)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2))
-                .addGap(32, 32, 32)
-                .addComponent(jButton1)
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/newlogo.png"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Show1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show1ActionPerformed
+        // TODO add your handling code here:
+         {
+        if (Show1.isSelected()) {
+            ConfirmPassword.setEchoChar((char) 0); // Show characters
+        } else {
+            ConfirmPassword.setEchoChar('*'); // Mask characters (use your preferred char)
+        }
+    }
+    }//GEN-LAST:event_Show1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,16 +145,41 @@ public class UpdatePassword extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JPasswordField ConfirmPassword;
+    private javax.swing.JPasswordField NewPassword;
+    private javax.swing.JPasswordField OldPassword;
+    private javax.swing.JButton Reset;
+    private javax.swing.JButton Show1;
+    private javax.swing.JButton Show2;
+    private javax.swing.JButton Show3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
+public void showpasswordButtonListener(ActionListener listener){
+      Show1.addActionListener(listener);
+}
+public void showpasswordButtonListener1(ActionListener listener){
+      Show2.addActionListener(listener);
+}
+public void showpasswordButtonListener2(ActionListener listener){
+      Show3.addActionListener(listener);
+}
+public void tooglePaawordField1(boolean visible){
+    ConfirmPassword.setEchoChar(visible ?(char)0:'*');
+    ConfirmPassword.setText(visible ? "Hide":"Show");
+}
+public void tooglePaawordField2(boolean visible){
+   NewPassword.setEchoChar(visible ?(char)0:'*');
+    NewPassword.setText(visible ? "Hide":"Show");
+}
+public void tooglePaawordField3(boolean visible){
+   OldPassword.setEchoChar(visible ?(char)0:'*');
+    OldPassword.setText(visible ? "Hide":"Show");
+}
+
+    
 }

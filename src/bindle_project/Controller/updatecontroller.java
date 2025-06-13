@@ -4,9 +4,13 @@
  */
 package bindle_project.Controller;
 
+
+
 import bindle_project.View.UpdatePassword;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
 
 /**
  *
@@ -32,11 +36,7 @@ public class updatecontroller {
             updateView.tooglePaawordField1(isPasswordVisible);
                         updateView.tooglePaawordField2(isPasswordVisible);
                                     updateView.tooglePaawordField3(isPasswordVisible);
-
-
         }
-       }
-   }
-   
+        
 
 
