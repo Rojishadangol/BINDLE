@@ -85,10 +85,10 @@ public class DeactivateAccountUI extends JFrame {
                         "This can be undone within 30 days.\n\nType 'DEACTIVATE' to confirm:");
 
         if ("DEACTIVATE".equalsIgnoreCase(input)) {
-            JOptionPane.showMessageDialog(this, "✅ Your account has been deactivated.\nAn email confirmation has been sent.");
+            JOptionPane.showMessageDialog(this, " Your account has been deactivated.\nAn email confirmation has been sent.");
             dispose(); // close window
         } else if (input != null) {
-            JOptionPane.showMessageDialog(this, "❌ Deactivation cancelled or incorrect confirmation.");
+            JOptionPane.showMessageDialog(this, " Deactivation cancelled or incorrect confirmation.");
         }
     }
 
