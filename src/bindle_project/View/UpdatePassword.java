@@ -29,7 +29,6 @@ public class UpdatePassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         NewPassword = new javax.swing.JPasswordField();
@@ -37,14 +36,10 @@ public class UpdatePassword extends javax.swing.JFrame {
         OldPassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         ConfirmPassword = new javax.swing.JPasswordField();
-        Reset = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         Show1 = new javax.swing.JButton();
         Show2 = new javax.swing.JButton();
         Show3 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -56,44 +51,37 @@ public class UpdatePassword extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("New Password");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 209, -1, -1));
-        getContentPane().add(NewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 206, 188, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 202, -1, -1));
+        getContentPane().add(NewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 199, 188, -1));
 
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("Old Password");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 172, 79, -1));
-        getContentPane().add(OldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 159, 189, 29));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 165, 79, -1));
+        getContentPane().add(OldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 159, 189, -1));
 
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("Confirm Password");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 250, -1, -1));
-        getContentPane().add(ConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 247, 188, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 242, -1, -1));
+        getContentPane().add(ConfirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 239, 188, -1));
 
-        Reset.setBackground(new java.awt.Color(0, 102, 102));
-        Reset.setForeground(new java.awt.Color(255, 255, 255));
-        Reset.setText("Reset");
-        getContentPane().add(Reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 301, 75, -1));
+        jButton1.setBackground(new java.awt.Color(0, 102, 102));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Reset");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 293, 75, -1));
 
-        Show1.setForeground(new java.awt.Color(0, 102, 102));
         Show1.setText("Show");
-        Show1.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(Show1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, -1));
+
+        Show2.setText("Show");
+        getContentPane().add(Show2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, -1));
+
+        Show3.setText("Show");
+        Show3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Show1ActionPerformed(evt);
+                Show3ActionPerformed(evt);
             }
         });
-        getContentPane().add(Show1, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 165, 75, -1));
-
-        Show2.setForeground(new java.awt.Color(0, 102, 102));
-        Show2.setText("Show");
-        getContentPane().add(Show2, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 206, 75, -1));
-
-        Show3.setForeground(new java.awt.Color(0, 102, 102));
-        Show3.setText("Show");
-        getContentPane().add(Show3, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 247, 75, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/newlogo.png"))); // NOI18N
-        jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 40));
+        getContentPane().add(Show3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,6 +96,10 @@ public class UpdatePassword extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_Show1ActionPerformed
+
+    private void Show3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Show3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,16 +140,14 @@ public class UpdatePassword extends javax.swing.JFrame {
     private javax.swing.JPasswordField ConfirmPassword;
     private javax.swing.JPasswordField NewPassword;
     private javax.swing.JPasswordField OldPassword;
-    private javax.swing.JButton Reset;
     private javax.swing.JButton Show1;
     private javax.swing.JButton Show2;
     private javax.swing.JButton Show3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 public void showpasswordButtonListener(ActionListener listener){
       Show1.addActionListener(listener);

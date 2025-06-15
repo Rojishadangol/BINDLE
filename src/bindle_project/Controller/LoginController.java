@@ -5,7 +5,6 @@
 package bindle_project.Controller;
 
 import bindle_project.Dao.UserDao;
-import bindle_project.Model.LoginRequest;
 import bindle_project.Model.UserData;
 import bindle_project.View.LoginView;
 import java.awt.event.ActionEvent;
@@ -40,25 +39,28 @@ public class LoginController {
             if(email.isEmpty()||password.isEmpty()){
             JOptionPane.showMessageDialog(view,"Fill in all the field");}
             else{
-            LoginRequest loginData= new LoginRequest(email,password);
-            UserDao userDao=new UserDao();
-            UserData user= userDao.login(loginData);
-            if (user==null){
-            JOptionPane.showMessageDialog(view,"Login Failed");
-            }
-            else{
-                
-            JOptionPane.showMessageDialog(view,"Login Successfull");
-           
-            }}
+//            LoginRequest loginData= new LoginRequest(email,password);
+//            UserDao userDao=new UserDao();
+//            UserData user= userDao.login(loginData);
+//            if (user==null){
+//            JOptionPane.showMessageDialog(view,"Login Failed");
+//            }
+//            else{
+//                
+//            JOptionPane.showMessageDialog(view,"Login Successfull");
+//           
+//            }}
             
         }
+    }
     }
     class ShowPasswordListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            isPasswordVisisble= !isPasswordVisisble;
-view.tooglePasswordField(isPasswordVisisble);        }
+//            isPasswordVisisble= !isPasswordVisisble;
+//view.tooglePasswordField(isPasswordVisisble);       
+        }   
+    
     }
-}
+    }
