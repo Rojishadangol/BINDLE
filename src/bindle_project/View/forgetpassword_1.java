@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view;
+package bindle_project.View;
 
 /**
  *
  * @author diyan
  */
-public class forgetpassword extends javax.swing.JFrame {
+public class forgetpassword_1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form forgetpassword
+     * Creates new form forgetpassword_1
      */
-    public forgetpassword() {
+    public forgetpassword_1() {
         initComponents();
     }
 
