@@ -37,6 +37,9 @@ public class updatecontroller {
                         updateView.tooglePaawordField2(isPasswordVisible);
                                     updateView.tooglePaawordField3(isPasswordVisible);
         }
+       }
+}
         
 
 
+       
