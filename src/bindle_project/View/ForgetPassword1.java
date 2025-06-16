@@ -188,4 +188,5 @@ public class ForgetPassword1 extends javax.swing.JFrame {
     private javax.swing.JButton newShow;
     private javax.swing.JButton reset;
     // End of variables declaration//GEN-END:variables
+
 }
