@@ -29,6 +29,8 @@ public class UpdatePassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         NewPassword = new javax.swing.JPasswordField();
@@ -40,8 +42,12 @@ public class UpdatePassword extends javax.swing.JFrame {
         Show1 = new javax.swing.JButton();
         Show2 = new javax.swing.JButton();
         Show3 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.add(jLabel5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,20 +77,12 @@ public class UpdatePassword extends javax.swing.JFrame {
         jButton1.setText("Reset");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 293, 75, -1));
 
-        Show1.setBackground(new java.awt.Color(0, 153, 153));
         Show1.setText("Show");
         getContentPane().add(Show1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, -1, -1));
 
-        Show2.setBackground(new java.awt.Color(0, 153, 153));
         Show2.setText("Show");
-        Show2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Show2ActionPerformed(evt);
-            }
-        });
         getContentPane().add(Show2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, -1));
 
-        Show3.setBackground(new java.awt.Color(0, 153, 153));
         Show3.setText("Show");
         Show3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,24 +91,13 @@ public class UpdatePassword extends javax.swing.JFrame {
         });
         getContentPane().add(Show3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/newlogo.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 60, 50));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/newlogo.png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 40));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 520, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 380));
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -182,7 +169,10 @@ public class UpdatePassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 public void showpasswordButtonListener(ActionListener listener){
       Show1.addActionListener(listener);
