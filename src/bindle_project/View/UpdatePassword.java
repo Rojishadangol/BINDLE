@@ -174,27 +174,30 @@ public class UpdatePassword extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
-public void showpasswordButtonListener(ActionListener listener){
-      Show1.addActionListener(listener);
-}
-public void showpasswordButtonListener1(ActionListener listener){
-      Show2.addActionListener(listener);
-}
-public void showpasswordButtonListener2(ActionListener listener){
-      Show3.addActionListener(listener);
-}
-public void tooglePaawordField1(boolean visible){
-    ConfirmPassword.setEchoChar(visible ?(char)0:'*');
-    ConfirmPassword.setText(visible ? "Hide":"Show");
-}
-public void tooglePaawordField2(boolean visible){
-   NewPassword.setEchoChar(visible ?(char)0:'*');
-    NewPassword.setText(visible ? "Hide":"Show");
-}
-public void tooglePaawordField3(boolean visible){
-   OldPassword.setEchoChar(visible ?(char)0:'*');
-    OldPassword.setText(visible ? "Hide":"Show");
+public void showpasswordButtonListener(ActionListener listener) {
+    Show1.addActionListener(listener);
 }
 
-    
+public void showpasswordButtonListener1(ActionListener listener) {
+    Show2.addActionListener(listener);
+}
+
+public void showpasswordButtonListener2(ActionListener listener) {
+    Show3.addActionListener(listener);
+}
+
+public void tooglePaawordField1(boolean visible) {
+    ConfirmPassword.setEchoChar(visible ? (char) 0 : '*');
+    Show1.setText(visible ? "Hide" : "Show");
+}
+
+public void tooglePaawordField2(boolean visible) {
+    NewPassword.setEchoChar(visible ? (char) 0 : '*');
+    Show2.setText(visible ? "Hide" : "Show");
+}
+
+public void tooglePaawordField3(boolean visible) {
+    OldPassword.setEchoChar(visible ? (char) 0 : '*');
+    Show3.setText(visible ? "Hide" : "Show");
+}
 }
