@@ -5,6 +5,7 @@
 package bindle_project.Controller;
 
 import bindle_project.Dao.UserDao;
+import bindle_project.Model.LoginRequest;
 import bindle_project.Model.UserData;
 import bindle_project.View.LoginView;
 import java.awt.event.ActionEvent;
@@ -53,7 +54,7 @@ public class LoginController {
             
         }
     }
-    }
+    
     class ShowPasswordListener implements ActionListener{
 
         @Override
@@ -63,4 +64,5 @@ public class LoginController {
         }   
     
     }
+
 }
