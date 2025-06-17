@@ -95,10 +95,12 @@ public class search extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/books.jpg"))); // NOI18N
         jLabel9.setText("jLabel9");
+
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 260, 210));
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 5)); // NOI18N
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/Logo.png"))); // NOI18N
+
         jLabel11.setText("jLabel11");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 250, 40));
 
