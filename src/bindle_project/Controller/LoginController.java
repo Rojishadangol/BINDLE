@@ -75,8 +75,8 @@ public class LoginController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-//            isPasswordVisisble= !isPasswordVisisble;
-//view.tooglePasswordField(isPasswordVisisble);       
+            isPasswordVisisble= !isPasswordVisisble;
+view.tooglePasswordField(isPasswordVisisble);       
         }   
     
     }

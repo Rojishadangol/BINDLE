@@ -51,7 +51,6 @@ public class RegisterController {
         JOptionPane.showMessageDialog(view,"Passwords do not match");
     }
     else{
-    BookDAO userDao=new BookDAO();
     UserData user= new UserData(name,email,password);
     boolean result=userDao.register(user);
     if (result){

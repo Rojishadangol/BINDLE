@@ -199,5 +199,5 @@ show1.setText(visible ? "Hide":"Show");}
 public void showPasswordButtonListener1(ActionListener listener){
 show2.addActionListener(listener);}
 public void tooglePasswordField1(boolean visible){
-password.setEchoChar(visible ? (char) 0:'*');
+ConfirmPassword.setEchoChar(visible ? (char) 0:'*');
 show2.setText(visible ? "Hide":"Show");}}
