@@ -1,8 +1,7 @@
 package bindle_project.View;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import javax.swing.*;
 
 public class DeactivateAccountUI extends JFrame {
 
