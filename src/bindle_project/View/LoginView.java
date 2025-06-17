@@ -6,6 +6,7 @@ package bindle_project.View;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import javax.swing.JLabel;
 
 /**
  *
@@ -18,6 +19,7 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+        
     }
 
     /**
@@ -131,6 +133,10 @@ return email;
 
 public void loginUser(ActionListener listener){
     login.addActionListener(listener);
+}
+
+public javax.swing.JLabel getForgotPassword(){
+ return forgotPassword;
 }
 
 public void forgotPassword(MouseListener listener){
