@@ -2,15 +2,23 @@ package bindle_project.Controller;
 
 import bindle_project.Dao.UserDao;
 import bindle_project.View.ForgetPassword1;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
 public class ForgetPasswordController {
+        private boolean isPasswordVisisble=false;
+
 
     private final ForgetPassword1 view;
 
     public ForgetPasswordController(ForgetPassword1 view) {
         this.view = view;
+                view.showPasswordButtonListener(new ForgetPasswordController.ShowPasswordListener());
+                                view.showPasswordButtonListener1(new ForgetPasswordController.ShowPasswordListener1());
+
+
     }
 
     // Call this to show the forget password view
@@ -45,4 +53,21 @@ public class ForgetPasswordController {
             JOptionPane.showMessageDialog(null, "Failed to update password.");
         }
     }
+   class ShowPasswordListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isPasswordVisisble= !isPasswordVisisble;
+view.tooglePasswordField(isPasswordVisisble);  
+
+        }   
+    
+    } 
+    class ShowPasswordListener1 implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isPasswordVisisble= !isPasswordVisisble;
+view.tooglePasswordField1(isPasswordVisisble);  
 }
+    }}
