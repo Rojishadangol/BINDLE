@@ -1,8 +1,7 @@
 package bindle_project.View;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import javax.swing.*;
 
 public class DeactivateAccountUI extends JFrame {
 
@@ -26,7 +25,7 @@ public class DeactivateAccountUI extends JFrame {
         title.setFont(new Font("Arial", Font.BOLD, 20));
         title.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JTextArea warning = new JTextArea(" Deactivating your account will:\n" +
+        JTextArea warning = new JTextArea("⚠ Deactivating your account will:\n" +
                 "• Disable access to all features\n" +
                 "• Remove you from shared workspaces\n" +
                 "• Preserve your data for 30 days\n\n" +
@@ -97,3 +96,4 @@ public class DeactivateAccountUI extends JFrame {
         SwingUtilities.invokeLater(() -> new DeactivateAccountUI());
     }
 }
+
