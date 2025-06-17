@@ -96,7 +96,7 @@ public class search extends javax.swing.JFrame {
         jLabel9.setText("jLabel9");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 220, 210));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newlogo.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/newlogo.png"))); // NOI18N
         jLabel11.setText("jLabel11");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 50));
 
