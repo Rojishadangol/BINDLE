@@ -3,7 +3,7 @@ package bindle_project.Controller;
 
 
 import bindle_project.Dao.UserDao;
-import java.awt.print.Book;
+import bindle_project.Model.Search;
 
 
 
@@ -16,7 +16,7 @@ public class Bookcontroller {
         userDao = new UserDao();
     }
 
-    public List< Book> search(String keyword) {
-        return userDao.searchBooks(keyword);
+    public List<Search> search(String keyword) {
+        return userDao.searchbook(keyword);
     }
 }
