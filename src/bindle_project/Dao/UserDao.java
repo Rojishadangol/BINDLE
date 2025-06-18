@@ -14,7 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.sql.*;
-
+import bindle_project.Model.Search;
+import java.util.ArrayList;
 /**
  *
  * @author acer
@@ -61,7 +62,34 @@ MySql.closeConnection(conn);
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public List<Book> search(String keyword) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Search> searchbook(String keyword) {
+        List<Search> searchResults = new ArrayList<>();
+    MySqlConnection mySql = new MySqlConnection();
+    Connection conn = mySql.openConnection();
+
+    String sql = "SELECT * FROM books WHERE title LIKE ? OR author LIKE ?";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, "%" + keyword + "%");
+        stmt.setString(2, "%" + keyword + "%");
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Search search = new Search();
+            search.setId(rs.getInt("id")); // match your DB columns
+            search.setTitle(rs.getString("title"));
+            search.setAuthor(rs.getString("author"));
+            search.setPrice(rs.getDouble("price")); // optional
+
+            searchResults.add(search);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        mySql.closeConnection(conn);
+    }
+
+    return searchResults;
     }
 }
