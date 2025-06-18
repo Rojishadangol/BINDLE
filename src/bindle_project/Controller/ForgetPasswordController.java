@@ -1,20 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package bindle_project.Controller;
 
 import bindle_project.Dao.UserDao;
+import bindle_project.View.ForgetPassword1;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author acer
- */
 public class ForgetPasswordController {
+        private boolean isPasswordVisisble=false;
 
- public static void resetPassword(String email, String newPass, String confirmPass) {
+
+    private final ForgetPassword1 view;
+
+    public ForgetPasswordController(ForgetPassword1 view) {
+        this.view = view;
+                view.showPasswordButtonListener(new ForgetPasswordController.ShowPasswordListener());
+                                view.showPasswordButtonListener1(new ForgetPasswordController.ShowPasswordListener1());
+
+
+    }
+
+    // Call this to show the forget password view
+    public void open() {
+        view.setVisible(true); 
+    }
+
+    public void close() {
+        view.dispose();
+    }
+
+    public static void resetPassword(String email, String newPass, String confirmPass) {
         if (newPass.isEmpty() || confirmPass.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all fields.");
             return;
@@ -36,10 +52,22 @@ public class ForgetPasswordController {
         } else {
             JOptionPane.showMessageDialog(null, "Failed to update password.");
         }
- }
-
-    public static void updatePassword(String newPass, String confirmPass) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-}
+   class ShowPasswordListener implements ActionListener{
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isPasswordVisisble= !isPasswordVisisble;
+view.tooglePasswordField(isPasswordVisisble);  
+
+        }   
+    
+    } 
+    class ShowPasswordListener1 implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isPasswordVisisble= !isPasswordVisisble;
+view.tooglePasswordField1(isPasswordVisisble);  
+}
+    }}

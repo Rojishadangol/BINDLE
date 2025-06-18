@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Dao/UserDao.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Database/DbConnection.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Database/MySqlConnection.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Bindle_project.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/UserData.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/background.png</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/Logo.png</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/LoginView.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/LoginController.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/DeactivateAccountUI.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/LoginInterfacee.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/homepage.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/books.jpg</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/ForgetPassword1.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/search.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/SecurePurchaseUI.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/newlogo.png</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/UpdatePassword.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/UpdatePasswordAction.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/WhatsApp%20Image%202025-06-11%20at%208.10.57%20AM.jpeg</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/Bookcontroller.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/RegisterControllers.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/updatecontroller.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/RegisterController.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/ForgetPasswordController.java</file>
+        </group>
+    </open-files>
+</project-private>

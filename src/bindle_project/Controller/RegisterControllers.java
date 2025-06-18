@@ -4,7 +4,7 @@
  */
 package bindle_project.Controller;
 
-import bindle_project.Dao.UseDao;
+import bindle_project.Dao.UserDao;
 import bindle_project.Model.UserData;
 import bindle_project.View.RegisterView;
 import java.awt.event.ActionEvent;
@@ -15,11 +15,11 @@ import javax.swing.JOptionPane;
  *
  * @author acer
  */
-public class RegisterController {
+public class RegisterControllers {
     RegisterView view= new RegisterView();
         private boolean isPasswordVisisble=false;
 
-    public RegisterController(RegisterView view){
+    public RegisterControllers(RegisterView view){
     this.view=view;
     RegisterUser register = new RegisterUser();
     this.view.registerUser(new RegisterUser());
@@ -51,8 +51,10 @@ public class RegisterController {
         JOptionPane.showMessageDialog(view,"Passwords do not match");
     }
     else{
+    UserDao userDao=new UserDao();
     UserData user= new UserData(name,email,password);
     boolean result=userDao.register(user);
+    System.out.println("RESULT"+result);
     if (result){
                 JOptionPane.showMessageDialog(view,"Registered Successfully");
                 
@@ -77,4 +79,5 @@ view.tooglePasswordField(isPasswordVisisble);
             isPasswordVisisble= !isPasswordVisisble;
 view.tooglePasswordField(isPasswordVisisble);  }
     
-    }}
+    }
+}

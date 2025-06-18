@@ -5,10 +5,14 @@
 package bindle_project.Controller;
 
 import bindle_project.Dao.UserDao;
+import bindle_project.Model.LoginRequest;
 import bindle_project.Model.UserData;
+import bindle_project.View.ForgetPassword1;
 import bindle_project.View.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +27,19 @@ public class LoginController {
         LoginUser loginUser=new LoginUser();
         this.view.loginUser(loginUser);
         view.showPasswordButtonListener(new ShowPasswordListener());
+                this.view.getForgotPassword().addMouseListener(getForgetMouseListener());
+
+    }
+     public MouseAdapter getForgetMouseListener() {
+        return new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                close(); // Close login window
+                ForgetPassword1 forgetView = new ForgetPassword1();
+                ForgetPasswordController Regcon = new ForgetPasswordController(forgetView);
+                Regcon.open(); // Open registration window
+            }
+        };
     }
     public void open(){
         view.setVisible(true);
@@ -53,14 +70,15 @@ public class LoginController {
             
         }
     }
-    }
+    
     class ShowPasswordListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-//            isPasswordVisisble= !isPasswordVisisble;
-//view.tooglePasswordField(isPasswordVisisble);       
+            isPasswordVisisble= !isPasswordVisisble;
+view.tooglePasswordField(isPasswordVisisble);       
         }   
     
     }
+
 }
