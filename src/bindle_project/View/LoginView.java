@@ -19,6 +19,8 @@ public class LoginView extends javax.swing.JFrame {
      */
     public LoginView() {
         initComponents();
+                setVisible(true);
+
         
     }
 
@@ -137,7 +139,9 @@ public void loginUser(ActionListener listener){
 
 public javax.swing.JLabel getForgotPassword(){
  return forgotPassword;
+ 
 }
+
 
 public void forgotPassword(MouseListener listener){
     forgotPassword.addMouseListener(listener);}
