@@ -4,11 +4,15 @@
  */
 package bindle_project.Controller;
 
-import bindle_project.Dao.UseDao;
+import bindle_project.Dao.UserDao;
 import bindle_project.Model.UserData;
+import bindle_project.View.LoginView;
 import bindle_project.View.RegisterView;
+import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,9 +29,28 @@ public class RegisterController {
     this.view.registerUser(new RegisterUser());
     view.showPasswordButtonListener(new ShowPasswordListener());
         view.showPasswordButtonListener1(new ShowPasswordListener1());
+this.view.getAlreadyHaveAnAccount().addMouseListener(new MouseAdapter(){
+@Override
+public void mouseClicked(MouseEvent e){
+navigateToLogin();}});
+this.view.getRegisterButton().addActionListener(new ActionListener(){
 
+
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+RegisterUser();       
+        }
+    });
 
     }
+    public void navigateToLogin(){
+                close(); // Close login window
+                LoginView loginView = new LoginView();
+                LoginController login = new LoginController(loginView);
+                login.open(); // Open registration window
+            }
+        
     public void open(){
     view.setVisible(true);
     }
@@ -50,16 +73,21 @@ public class RegisterController {
     else if(!password.equals(confirmPassword)){
         JOptionPane.showMessageDialog(view,"Passwords do not match");
     }
+    boolean success= UserDao.RegisterUser(name,email,password);
+    if (success){
+        JOptionPane.showMessageDialog(view,"Registered Successfully");
+        close();
+         LoginView loginView = new LoginView();
+                LoginController login = new LoginController(loginView);
+                login.open(); 
+        
+        
+    }
     else{
-    UserData user= new UserData(name,email,password);
-    boolean result=userDao.register(user);
-    if (result){
-                JOptionPane.showMessageDialog(view,"Registered Successfully");
-                
-            }else{
+    
                JOptionPane.showMessageDialog(view,"Failed to Register");
             }
-    }
+    
     }}
     class ShowPasswordListener implements ActionListener{
 

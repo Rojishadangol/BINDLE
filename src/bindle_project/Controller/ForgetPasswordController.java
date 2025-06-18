@@ -2,6 +2,7 @@ package bindle_project.Controller;
 
 import bindle_project.Dao.UserDao;
 import bindle_project.View.ForgetPassword1;
+import bindle_project.View.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +18,15 @@ public class ForgetPasswordController {
         this.view = view;
                 view.showPasswordButtonListener(new ForgetPasswordController.ShowPasswordListener());
                                 view.showPasswordButtonListener1(new ForgetPasswordController.ShowPasswordListener1());
-
+this.view.getCancelButton().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+close();
+LoginView loginView=new LoginView();
+LoginController login=new LoginController(loginView);
+login.open();            
+            }
+        });
 
     }
 

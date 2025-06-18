@@ -207,5 +207,8 @@ confirmShow.addActionListener(listener);}
 public void tooglePasswordField1(boolean visible){
 confirmPasswordField.setEchoChar(visible ? (char) 0:'*');
 confirmShow.setText(visible ? "Hide":"Show");}
+public javax.swing.JButton getCancelButton(){
+return cancel;
+}
    
 }

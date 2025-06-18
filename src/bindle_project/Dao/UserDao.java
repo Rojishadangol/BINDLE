@@ -34,6 +34,10 @@ public class UserDao {
             return false;
         }
     }    
+
+    public static boolean RegisterUser(String name, String email, String password) {
+        return true;
+    }
     public boolean register(UserData user){
         MySqlConnection MySql=new MySqlConnection();
     String query="INSERT INTO users(name,email,password) VALUES()";

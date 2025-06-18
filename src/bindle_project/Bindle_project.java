@@ -21,8 +21,11 @@ public class Bindle_project {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         LoginView view=new LoginView();
-    LoginController controller=new LoginController(view);
+//         LoginView view=new LoginView();
+//    LoginController controller=new LoginController(view);
+//    controller.open();
+RegisterView view=new RegisterView();
+    RegisterController controller=new RegisterController(view);
     controller.open();
     }
     
