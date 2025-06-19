@@ -4,6 +4,14 @@
  */
 package bindle_project.View;
 
+import bindle_project.Dao.BookDao;
+import java.awt.print.Book;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Acer
@@ -15,6 +23,16 @@ public class Listing extends javax.swing.JFrame {
      */
     public Listing() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Listing functionality not fully implemented."));
+        JButton closeButton = new JButton("Close");
+        closeButton.addActionListener(e -> dispose());
+        panel.add(closeButton);
+
+        add(panel);
     }
 
     /**
@@ -674,4 +692,5 @@ public class Listing extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
 }

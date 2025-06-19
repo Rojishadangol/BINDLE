@@ -2,20 +2,43 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package BindleFrame;
+package bindle_project;
+
+import bindle_project.Controller.LoginController;
+import bindle_project.Database.DbConnection;
+import bindle_project.Model.AuthModel;
+import bindle_project.View.LoginView;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  *
- * @author ACER
+ * @author acer
  */
-public class WishlistScreen extends javax.swing.JFrame {
+public class BindleFrame extends javax.swing.JFrame {
+public BindleFrame() {
+        setTitle("Bindle Book Exchange");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-    /**
-     * Creates new form WishlistScreen
-     */
-    public WishlistScreen() {
-        initComponents();
+        // Initialize database
+        DbConnection.initDatabase();
+
+        // Launch login view
+        LoginView loginView = new LoginView();
+        LoginController loginController = new LoginController(loginView, new AuthModel());
+        loginView.setVisible(true);
+}
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(BindleFrame::new);
+    
     }
+    /**
+     * Creates new form BindleFrame
+     */
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,36 +68,18 @@ public class WishlistScreen extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+  
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WishlistScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WishlistScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WishlistScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WishlistScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WishlistScreen().setVisible(true);
-            }
-        });
+                new BindleFrame().setVisible(true);
+          
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

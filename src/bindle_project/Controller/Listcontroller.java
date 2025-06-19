@@ -1,13 +1,27 @@
 package bindle_project.Controller;
 
-import java.util.List;
+import bindle_project.Dao.ListDao;
+import bindle_project.Model.Book;
+import bindle_project.Model.BookModel;
+import bindle_project.View.HomeScreen;
+import javax.swing.JOptionPane;
 
-import bindle_project.Dao.UserDao;
+public class ListController {
+    private HomeScreen view;
+    private BookModel bookModel;
+    private int userId;
 
-public class Listcontroller {
-     UserDao dao = new UserDao();
+    public ListController(HomeScreen view, int userId) {
+        this.view = view;
+        this.bookModel = new BookModel();
+        this.userId = userId;
+    }
 
-    public List<Book> fetchBooks() {
-        return dao.getAllBooks();
-    
+    public void listBook(String title, String author, double price, String condition) {
+        if (bookModel.addBook(title, author, price, condition, userId)) {
+            JOptionPane.showMessageDialog(view, "Book listed successfully.");
+        } else {
+            JOptionPane.showMessageDialog(view, "Failed to list book.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

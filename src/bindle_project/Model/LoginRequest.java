@@ -4,21 +4,15 @@
  */
 package bindle_project.Model;
 
-/**
- *
- * @author acer
- */
 public class LoginRequest {
+    private String username;
+    private String password;
 
-    public LoginRequest(String email, String password) {
+    public LoginRequest(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    public String getEmail() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public String getPassword() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+    public String getUsername() { return username; }
+    public String getPassword() { return password; }
 }

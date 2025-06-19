@@ -1,6 +1,7 @@
 package bindle_project.Controller;
 
 import bindle_project.Dao.UserDao;
+import bindle_project.Model.AuthModel;
 import bindle_project.View.ForgetPassword1;
 import bindle_project.View.LoginView;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,7 @@ this.view.getCancelButton().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
 close();
 LoginView loginView=new LoginView();
-LoginController login=new LoginController(loginView);
+LoginController login=new LoginController(loginView, new AuthModel());
 login.open();            
             }
         });

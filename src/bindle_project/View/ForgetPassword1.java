@@ -5,6 +5,8 @@
 package bindle_project.View;
 
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -18,6 +20,10 @@ public class ForgetPassword1 extends javax.swing.JFrame {
     public ForgetPassword1() {
         initComponents();
         setVisible(true);
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Password reset link sent (simulated)."));
+this.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20,20,300,50));
+
     }
 
     /**

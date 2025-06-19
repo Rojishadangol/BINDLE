@@ -3,19 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package BindleFrame;
+package bindle_project.View;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.print.Book;
+import java.util.List;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
  * @author ACER
  */
 public class HomeScreen extends javax.swing.JFrame {
-
+public void updateCartDisplay(int itemCount) {
+        // Update UI to reflect cart size (e.g., label or badge)
+        System.out.println("Cart updated. Items: " + itemCount); // Placeholder, replace with actual UI update
+    }
     /**
      * Creates new form HomeScreen
      */
     public HomeScreen() {
         initComponents();
+        
     }
 
     /**
@@ -38,6 +50,7 @@ public class HomeScreen extends javax.swing.JFrame {
         labelBooks = new javax.swing.JLabel();
         labelForAll = new javax.swing.JLabel();
         labelShopNow = new javax.swing.JLabel();
+        SearchButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -51,12 +64,12 @@ public class HomeScreen extends javax.swing.JFrame {
         labelCartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Cart.png"))); // NOI18N
         labelCartIcon.setText("jLabel2");
         getContentPane().add(labelCartIcon);
-        labelCartIcon.setBounds(540, 30, 53, 30);
+        labelCartIcon.setBounds(630, 30, 53, 30);
 
         labelHeartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Heart.png"))); // NOI18N
         labelHeartIcon.setText("jLabel3");
         getContentPane().add(labelHeartIcon);
-        labelHeartIcon.setBounds(510, 30, 30, 30);
+        labelHeartIcon.setBounds(590, 30, 30, 30);
 
         labelSearchLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/SearchIcon.png"))); // NOI18N
         labelSearchLogo.setText("jLabel4");
@@ -72,8 +85,9 @@ public class HomeScreen extends javax.swing.JFrame {
         searchTextField.setBounds(260, 30, 240, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/HomeScreenBookshelf.png"))); // NOI18N
+        jLabel1.setText("Search");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(320, 60, 310, 400);
+        jLabel1.setBounds(370, 100, 310, 400);
 
         labelLogoTitle.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         labelLogoTitle.setText("Bindle");
@@ -105,6 +119,10 @@ public class HomeScreen extends javax.swing.JFrame {
         });
         getContentPane().add(labelShopNow);
         labelShopNow.setBounds(40, 270, 140, 50);
+
+        SearchButton.setText("Search");
+        getContentPane().add(SearchButton);
+        SearchButton.setBounds(510, 30, 70, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,6 +175,7 @@ public class HomeScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SearchButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelBooks;
     private javax.swing.JLabel labelCartIcon;
@@ -169,4 +188,27 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel labelShopNow;
     private javax.swing.JTextField searchTextField;
     // End of variables declaration//GEN-END:variables
+public void displaySearchResults(List<Book> books) {
+        JPanel resultsPanel = new JPanel(new GridLayout(books.size(), 1));
+        for (Book book : books) {
+            JLabel label = new JLabel(book.getTitle() + " by " + book.getAuthor() + " - $" + book.getPrice());
+            resultsPanel.add(label);
+        }
+        add(new JScrollPane(resultsPanel), BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+    }
+    public javax.swing.JButton getSearchButton() {
+        return SearchButton;
+    }
+
+    public javax.swing.JTextField getSearchField() {
+        return searchTextField;
+    }
+    
 }
