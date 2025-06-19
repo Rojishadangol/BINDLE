@@ -126,7 +126,7 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JPasswordField password;
     private javax.swing.JButton show;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JTextField getPasswordField(){
+public javax.swing.JPasswordField getPasswordField(){
 return password;
 }
 public javax.swing.JTextField getEmail(){
