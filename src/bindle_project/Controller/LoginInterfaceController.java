@@ -10,6 +10,7 @@ import bindle_project.View.EditProfile;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JOptionPane;
 
 public class LoginInterfaceController {
@@ -23,26 +24,36 @@ public class LoginInterfaceController {
     }
 
     class LoginButtonListener implements ActionListener {
+        
         @Override
-        public void actionPerformed(ActionEvent e) {
-            String username = LoginInterface.getNameField().getText();
+public void actionPerformed(ActionEvent e) {
+    System.out.println("Save button clicked");  // debug line
 
-            if (username.equals("admin") ) {
-                JOptionPane.showMessageDialog(null, "Login successful!");
-                LoginInterface.dispose(); // Close login form
-                new EditProfile().setVisible(true); // Open edit profile view
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid username or password");
-            }
-        }
+    String name = LoginInterface.getNameField().getText();
+    String email = LoginInterface.getEmailField().getText();
+    String phone = LoginInterface.getPhoneField().getText();
+    String address = LoginInterface.getAddressField().getText();
+
+    System.out.println("Name: " + name); // debug line
+
+    if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please fill out all fields.");
+        return;
     }
 
-    class CancelButtonListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            LoginInterface.dispose();
-        }
+    try (java.io.FileWriter writer = new java.io.FileWriter("profile.txt", true)) {
+        writer.write("Name: " + name + "\n");
+        writer.write("Email: " + email + "\n");
+        writer.write("Phone: " + phone + "\n");
+        writer.write("Address: " + address + "\n");
+        writer.write("-------------------------\n");
+    } catch (java.io.IOException ex) {
+        JOptionPane.showMessageDialog(null, "Error saving data: " + ex.getMessage());
+        return;
+    }
+
+    JOptionPane.showMessageDialog(null, "Profile updated successfully!");
+}
     }
 }
-
 
