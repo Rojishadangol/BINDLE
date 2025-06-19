@@ -1,19 +1,17 @@
 
+package bindle_project.Controller;
+
+import bindle_project.Model.Book; // Added import for Book class
 import bindle_project.Model.BookModel;
 import bindle_project.Model.UserData;
 import bindle_project.View.BookGridScreen;
 import bindle_project.View.HomeScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.print.Book;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 public class HomeController {
     private HomeScreen view;
     private BookGridScreen bookGrid;
@@ -43,9 +41,11 @@ public class HomeController {
         // Example: Add button to mark as sold
         JButton sellButton = new JButton("Mark as Sold");
         sellButton.addActionListener(e -> {
-            int bookId = 1; // Replace with selected book ID
+            int bookId = 1; // Replace with selected book ID (e.g., from a selection)
             if (bookModel.markAsSold(bookId)) {
                 JOptionPane.showMessageDialog(view, "Book marked as sold.");
+            } else {
+                JOptionPane.showMessageDialog(view, "Failed to mark book as sold.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
         view.add(sellButton); // Add to appropriate panel

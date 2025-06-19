@@ -31,4 +31,11 @@ public class AuthModel {
     private boolean isValidEmail(String email) {
         return email != null && email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     }
+    public boolean resetPassword(String email, String newPassword) {
+        return UserDao.updatePassword(email, newPassword); // Add updatePassword to UserDao
+    }
+
+    public boolean resetPassword(String email, String newPass) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

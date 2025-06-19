@@ -10,10 +10,6 @@ import bindle_project.View.HomeScreen;
 import java.awt.print.Book;
 import java.util.List;
 
-/**
- *
- * @author acer
- */
 public class SearchController {
     private HomeScreen view;
     private SearchDao searchDao;
@@ -25,7 +21,7 @@ public class SearchController {
 
     public void performSearch(String keyword) {
         Search search = new Search(keyword);
-        List<Book> results = searchDao.searchBooks(search.getKeyword());
-        view.displaySearchResults(results); // Assume HomeScreen has this method
+        List<bindle_project.Model.Book> results = searchDao.searchBooks(search.getKeyword());
+        view.displaySearchResults(results); // Ensure HomeScreen has this method
     }
 }
