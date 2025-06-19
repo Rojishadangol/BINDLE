@@ -1,8 +1,7 @@
 package bindle_project.View;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import javax.swing.*;
 
 public class DeactivateAccountUI extends JFrame {
 
@@ -54,7 +53,7 @@ public class DeactivateAccountUI extends JFrame {
         deactivateBtn = new JButton("Deactivate");
 
         deactivateBtn.setBackground(Color.BLUE);
-        deactivateBtn.setForeground(Color.BLUE);
+        deactivateBtn.setForeground(Color.WHITE);
 
         cancelBtn.addActionListener(e -> dispose());
         deactivateBtn.addActionListener(e -> showConfirmationDialog());
@@ -97,3 +96,4 @@ public class DeactivateAccountUI extends JFrame {
         SwingUtilities.invokeLater(() -> new DeactivateAccountUI());
     }
 }
+

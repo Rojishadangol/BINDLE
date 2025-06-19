@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  *
  * @author diyan
  */
-public class CancelButtonListener implements ActionListener {
+public class  CancelButtonListener implements ActionListener {
 
     public CancelButtonListener() {
     }
