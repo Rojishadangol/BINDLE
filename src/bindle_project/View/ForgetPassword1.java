@@ -4,6 +4,10 @@
  */
 package bindle_project.View;
 
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author acer
@@ -15,6 +19,11 @@ public class ForgetPassword1 extends javax.swing.JFrame {
      */
     public ForgetPassword1() {
         initComponents();
+        setVisible(true);
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Password reset link sent (simulated)."));
+this.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20,20,300,50));
+
     }
 
     /**
@@ -42,28 +51,34 @@ public class ForgetPassword1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 240, 255));
 
         confirmShow.setText("Show");
 
         newShow.setText("Show");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 0, 102));
         jLabel4.setText("Confirm Password");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 0, 102));
         jLabel3.setText("New Password");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 0, 102));
         jLabel2.setText("Email");
 
         cancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cancel.setText("Cancel");
 
-        reset.setBackground(new java.awt.Color(204, 102, 255));
+        reset.setBackground(new java.awt.Color(102, 0, 102));
         reset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         reset.setForeground(new java.awt.Color(255, 255, 255));
         reset.setText("Reset");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel1.setForeground(new java.awt.Color(107, 44, 107));
         jLabel1.setText("Reset Password");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -84,7 +99,7 @@ public class ForgetPassword1 extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(newShow)
                             .addComponent(confirmShow))
@@ -100,7 +115,7 @@ public class ForgetPassword1 extends javax.swing.JFrame {
                                 .addComponent(reset)
                                 .addGap(36, 36, 36)
                                 .addComponent(cancel)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(125, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,5 +203,18 @@ public class ForgetPassword1 extends javax.swing.JFrame {
     private javax.swing.JButton newShow;
     private javax.swing.JButton reset;
     // End of variables declaration//GEN-END:variables
-
+public void showPasswordButtonListener(ActionListener listener){
+newShow.addActionListener(listener);}
+public void tooglePasswordField(boolean visible){
+newPasswordField.setEchoChar(visible ? (char) 0:'*');
+newShow.setText(visible ? "Hide":"Show");}
+public void showPasswordButtonListener1(ActionListener listener){
+confirmShow.addActionListener(listener);}
+public void tooglePasswordField1(boolean visible){
+confirmPasswordField.setEchoChar(visible ? (char) 0:'*');
+confirmShow.setText(visible ? "Hide":"Show");}
+public javax.swing.JButton getCancelButton(){
+return cancel;
+}
+   
 }

@@ -41,6 +41,7 @@ public class RegisterView extends javax.swing.JFrame {
         ConfirmPassword = new javax.swing.JPasswordField();
         show1 = new javax.swing.JButton();
         show2 = new javax.swing.JButton();
+        AlreadyHaveAnAccount = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,6 +105,9 @@ public class RegisterView extends javax.swing.JFrame {
         show2.setText("Show");
         getContentPane().add(show2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 420, -1, -1));
 
+        AlreadyHaveAnAccount.setText("Already Have an Account?");
+        getContentPane().add(AlreadyHaveAnAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, -1, -1));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/background.png"))); // NOI18N
         background.setText("jLabel6");
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 700, 590));
@@ -159,6 +163,7 @@ public class RegisterView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AlreadyHaveAnAccount;
     private javax.swing.JPasswordField ConfirmPassword;
     private javax.swing.JTextField Email;
     private javax.swing.JTextField Name;
@@ -189,8 +194,15 @@ return password;
 }
 public void registerUser(ActionListener listener){
     RegisterButton.addActionListener(listener);
+    
    
 }
+public javax.swing.JButton getRegisterButton(){
+return RegisterButton;}
+public javax.swing.JLabel getAlreadyHaveAnAccount(){
+    return AlreadyHaveAnAccount;}
+
+
 public void showPasswordButtonListener(ActionListener listener){
 show1.addActionListener(listener);}
 public void tooglePasswordField(boolean visible){
@@ -199,5 +211,5 @@ show1.setText(visible ? "Hide":"Show");}
 public void showPasswordButtonListener1(ActionListener listener){
 show2.addActionListener(listener);}
 public void tooglePasswordField1(boolean visible){
-password.setEchoChar(visible ? (char) 0:'*');
+ConfirmPassword.setEchoChar(visible ? (char) 0:'*');
 show2.setText(visible ? "Hide":"Show");}}

@@ -4,6 +4,11 @@
  */
 package BookCard;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author ACER
@@ -15,6 +20,18 @@ public class BookCard extends javax.swing.JPanel {
      */
     public BookCard() {
         initComponents();
+        setTitle("Bindle - Book Card");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Book card functionality not implemented."));
+        JButton closeButton = new JButton("Close");
+        closeButton.addActionListener(e -> dispose());
+        panel.add(closeButton);
+
+        add(panel);
     }
 
     /**

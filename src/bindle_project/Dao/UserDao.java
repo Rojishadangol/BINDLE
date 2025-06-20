@@ -4,60 +4,49 @@
  */
 package bindle_project.Dao;
 
-import bindle_project.Database.DbConnection;
-import bindle_project.Database.MySqlConnection;
+import bindle_project.Model.User;
 import bindle_project.Model.LoginRequest;
-import bindle_project.Model.UserData;
-import java.awt.print.Book;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.sql.*;
+import java.sql.DriverManager;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author acer
- */
 public class UserDao {
+    private static final String URL = "jdbc:mysql://localhost:3306/JavaProjectBindle";
+    private static final String USER = "root";
+    private static final String PASSWORD = "roji@123"; // Update with your actual password
 
-    public static boolean updatePassword(String email, String newPass) {
-        try (Connection con = DbConnection.getConnection()) {
-            String sql = "UPDATE users SET password = ? WHERE email = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, newPass);  // In real apps, hash this!
-            ps.setString(2, email);
-
-            return ps.executeUpdate() > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static boolean register(String email, String password, String name) {
+        String sql = "INSERT INTO users (email, password, name, verified) VALUES (?, ?, ?, false)";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+            pstmt.setString(2, password); // In production, hash the password
+            pstmt.setString(3, name);
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error during registration: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-    }    
-    public boolean register(UserData user){
-        MySqlConnection MySql=new MySqlConnection();
-    String query="INSERT INTO users(name,email,password) VALUES()";
-    Connection conn=MySql.openConnection();
-    try{
-    PreparedStatement stmnt= conn.prepareStatement(query);
-    stmnt.setString(1,user.getName());
-    stmnt.setString(2,user.getEmail());
-    stmnt.setString(3,user.getPassword());
-    int result = stmnt.executeUpdate();
-    return result>0;
-    }
-    catch(SQLException e){
-    return false;}
-        finally{
-MySql.closeConnection(conn);
-}
     }
 
-    public UserData Login(LoginRequest loginData) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public List<Book> search(String keyword) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public static User login(LoginRequest loginRequest) {
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, loginRequest.getUsername()); // Assuming email is used as username
+            pstmt.setString(2, loginRequest.getPassword());
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return new User(rs.getInt("id"), rs.getString("email"), rs.getString("password"), rs.getString("name"), rs.getBoolean("verified"));
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error during login: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
     }
 }
