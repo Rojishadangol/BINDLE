@@ -60,4 +60,8 @@ public class BookGridScreen extends JPanel {
             super.setVisible(visible); // Handle if added to another container
         }
     }
+
+    public int getSelectedBookId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

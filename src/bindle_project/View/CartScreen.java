@@ -4,9 +4,22 @@
  */
 package bindle_project.View;
 
+import bindle_project.Model.Cart;
+import bindle_project.Model.Book;
+import bindle_project.Model.User;
+import bindle_project.Controller.CartController;
+import bindle_project.Model.WishlistModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -15,23 +28,90 @@ import javax.swing.JPanel;
  */
 public class CartScreen extends javax.swing.JFrame {
 
+    private Cart model;
+    private CartController controller;
+    private Connection connection;
+
     /**
      * Creates new form CartScreen
      */
     public CartScreen() {
+        initConnection();
+        User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder
+        this.model = new Cart(currentUser, connection);
+        this.controller = new CartController(model, this);
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Cart functionality not implemented."));
-        JButton closeButton = new JButton("Close");
-        closeButton.addActionListener(e -> dispose());
-        panel.add(closeButton);
+        // Home button navigation
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                navigateToHome();
+            }
+        });
 
-        add(panel);
+        // Wishlist button navigation (from heartButton)
+        heartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                navigateToWishlist();
+            }
+        });
+
+        // Search navigation
+        searchTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                navigateToSearch();
+            }
+        });
+
+        // Remove action for the first item (kafkaBookLabel)
+        deleteLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                removeItem(1); // Assuming item 1 (Metamorphosis)
+            }
+        });
+
+        // Wishlist action for the first item (kafkaBookLabel)
+        wishlistLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                moveToWishlist(1); // Assuming item 1 (Metamorphosis)
+            }
+        });
+
+        // Remove action for the second item (jLabel1 - Sally Rooney)
+        jLabel5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                removeItem(2); // Assuming item 2 (Intermezzo)
+            }
+        });
+
+        // Wishlist action for the second item (jLabel1 - Sally Rooney)
+        jLabel6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                moveToWishlist(2); // Assuming item 2 (Intermezzo)
+            }
+        });
     }
-
+    private void initConnection() {
+        try {
+            String url = "jdbc:mysql://localhost:3306/JavaProjectBindle";
+            String user = "root";
+            String password = "roji@123";
+            this.connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Database connection established successfully");
+        } catch (SQLException e) {
+            System.out.println("Failed to connect to database: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,195 +145,142 @@ public class CartScreen extends javax.swing.JFrame {
         labelLogoSubTitle = new javax.swing.JLabel();
         searchTextField = new javax.swing.JTextField();
         labelSearchLogo = new javax.swing.JLabel();
-        labelHeartIcon = new javax.swing.JLabel();
-        labelCartIcon = new javax.swing.JLabel();
         labelShoppingCartText = new javax.swing.JLabel();
+        heartButton = new javax.swing.JButton();
+        CartButton = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        cartItemsPanel.setLayout(null);
+        cartItemsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        cartItemsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         kafkaBookLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Kafka.png"))); // NOI18N
-        cartItemsPanel.add(kafkaBookLabel);
-        kafkaBookLabel.setBounds(0, 0, 120, 185);
+        cartItemsPanel.add(kafkaBookLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         kafkaBookTitle.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         kafkaBookTitle.setText("Metamorphosis");
-        cartItemsPanel.add(kafkaBookTitle);
-        kafkaBookTitle.setBounds(150, 20, 130, 30);
+        cartItemsPanel.add(kafkaBookTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 130, 30));
 
         authorsName.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         authorsName.setText("By Franz Kafka");
-        cartItemsPanel.add(authorsName);
-        authorsName.setBounds(150, 50, 100, 17);
+        cartItemsPanel.add(authorsName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 100, -1));
 
         increasingDecreasing.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         increasingDecreasing.setText("- 1 +");
-        cartItemsPanel.add(increasingDecreasing);
-        increasingDecreasing.setBounds(150, 160, 70, 30);
+        cartItemsPanel.add(increasingDecreasing, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 70, 30));
 
         priceLabel.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         priceLabel.setText("NPR. 720");
-        cartItemsPanel.add(priceLabel);
-        priceLabel.setBounds(650, 30, 70, 17);
+        cartItemsPanel.add(priceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 70, -1));
 
         deleteLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         deleteLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Thrashcan.png"))); // NOI18N
         deleteLabel.setText("Remove");
         deleteLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        cartItemsPanel.add(deleteLabel);
-        deleteLabel.setBounds(460, 170, 90, 30);
+        cartItemsPanel.add(deleteLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 90, -1));
 
         wishlistLabel.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         wishlistLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Bookmark.png"))); // NOI18N
         wishlistLabel.setText("Wishlist");
-        cartItemsPanel.add(wishlistLabel);
-        wishlistLabel.setBounds(570, 170, 100, 30);
+        cartItemsPanel.add(wishlistLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/SallyRooney.png"))); // NOI18N
-        cartItemsPanel.add(jLabel1);
-        jLabel1.setBounds(0, 200, 120, 190);
+        cartItemsPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, 190));
 
         kafkaBookTitle1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         kafkaBookTitle1.setText("Metamorphosis");
-        cartItemsPanel.add(kafkaBookTitle1);
-        kafkaBookTitle1.setBounds(150, 20, 130, 30);
+        cartItemsPanel.add(kafkaBookTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 130, 30));
 
         kafkaBookTitle2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         kafkaBookTitle2.setText("Metamorphosis");
-        cartItemsPanel.add(kafkaBookTitle2);
-        kafkaBookTitle2.setBounds(150, 20, 130, 30);
+        cartItemsPanel.add(kafkaBookTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 130, 30));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Intermezzo");
-        cartItemsPanel.add(jLabel2);
-        jLabel2.setBounds(150, 240, 100, 20);
+        cartItemsPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 100, 20));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("By Sally Rooney");
-        cartItemsPanel.add(jLabel3);
-        jLabel3.setBounds(150, 260, 100, 20);
+        cartItemsPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 100, 20));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setText("- 1 +");
-        cartItemsPanel.add(jLabel4);
-        jLabel4.setBounds(150, 360, 50, 20);
+        cartItemsPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 50, 20));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Thrashcan.png"))); // NOI18N
         jLabel5.setText("Remove");
-        cartItemsPanel.add(jLabel5);
-        jLabel5.setBounds(460, 360, 100, 30);
+        cartItemsPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 100, -1));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Bookmark.png"))); // NOI18N
         jLabel6.setText("Wishlist");
-        cartItemsPanel.add(jLabel6);
-        jLabel6.setBounds(570, 360, 80, 30);
+        cartItemsPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 360, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel7.setText("NPR. 819");
-        cartItemsPanel.add(jLabel7);
-        jLabel7.setBounds(650, 260, 60, 20);
+        cartItemsPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, 60, 20));
 
         jScrollPane1.setViewportView(cartItemsPanel);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 101, 763, 400));
+
         headerPanel.setLayout(null);
+        getContentPane().add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(606, 6, -1, -1));
 
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/BindleBook.png"))); // NOI18N
+        getContentPane().add(logoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 0, 70, 55));
 
         labelLogoTitle.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         labelLogoTitle.setText("Bindle");
+        getContentPane().add(labelLogoTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 0, -1, 36));
 
         labelLogoSubTitle.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         labelLogoSubTitle.setText("Reselling academic and non academic books ");
+        getContentPane().add(labelLogoSubTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 42, -1, -1));
 
         searchTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchTextFieldActionPerformed(evt);
             }
         });
+        getContentPane().add(searchTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 0, 291, 36));
 
         labelSearchLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/SearchIcon.png"))); // NOI18N
-
-        labelHeartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Heart.png"))); // NOI18N
-        labelHeartIcon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelHeartIconMouseClicked(evt);
-            }
-        });
-
-        labelCartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Cart.png"))); // NOI18N
+        getContentPane().add(labelSearchLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 6, -1, -1));
 
         labelShoppingCartText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelShoppingCartText.setText("Shopping Cart (n)");
+        getContentPane().add(labelShoppingCartText, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 65, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelShoppingCartText)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelLogoSubTitle)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labelLogoTitle)
-                                        .addGap(53, 53, 53)
-                                        .addComponent(labelSearchLogo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelCartIcon)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelHeartIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))
+        heartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mylist.png"))); // NOI18N
+        getContentPane().add(heartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 50, -1));
+
+        CartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/CART.png"))); // NOI18N
+        getContentPane().add(CartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 60, 40));
+
+        homeButton.setText("Home");
+        getContentPane().add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 75, -1));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 780, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 6, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelSearchLogo, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(labelLogoTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(labelHeartIcon)
-                                        .addComponent(labelCartIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelLogoSubTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelShoppingCartText)
-                        .addGap(1, 1, 1)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -261,11 +288,6 @@ public class CartScreen extends javax.swing.JFrame {
     private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchTextFieldActionPerformed
-
-    private void labelHeartIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelHeartIconMouseClicked
-
-            // TODO add your handling code here:
-    }//GEN-LAST:event_labelHeartIconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -303,10 +325,13 @@ public class CartScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CartButton;
     private javax.swing.JLabel authorsName;
     private javax.swing.JPanel cartItemsPanel;
     private javax.swing.JLabel deleteLabel;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JButton heartButton;
+    private javax.swing.JButton homeButton;
     private javax.swing.JLabel increasingDecreasing;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -315,13 +340,12 @@ public class CartScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel kafkaBookLabel;
     private javax.swing.JLabel kafkaBookTitle;
     private javax.swing.JLabel kafkaBookTitle1;
     private javax.swing.JLabel kafkaBookTitle2;
-    private javax.swing.JLabel labelCartIcon;
-    private javax.swing.JLabel labelHeartIcon;
     private javax.swing.JLabel labelLogoSubTitle;
     private javax.swing.JLabel labelLogoTitle;
     private javax.swing.JLabel labelSearchLogo;
@@ -331,4 +355,76 @@ public class CartScreen extends javax.swing.JFrame {
     private javax.swing.JTextField searchTextField;
     private javax.swing.JLabel wishlistLabel;
     // End of variables declaration//GEN-END:variables
+private void navigateToHome() {
+        this.dispose();
+        new HomeScreen().setVisible(true);
+    }
+
+    private void navigateToWishlist() {
+    if (connection != null) {
+        User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder User
+        WishlistModel wishlistModel = new WishlistModel(currentUser, connection);
+        WishlistScreen wishlist = new WishlistScreen(wishlistModel);
+        wishlist.setVisible(true);
+        this.setVisible(false);
+    } else {
+        JOptionPane.showMessageDialog(this, "Database connection failed. Cannot navigate to Wishlist.");
+        System.out.println("Database connection is null");
+    }
+}
+
+    private void navigateToSearch() {
+        BookGridScreen search = new BookGridScreen();
+        search.setVisible(true);
+        this.setVisible(false);
+    }
+
+    private void removeItem(int itemId) {
+        // Map itemId to book (simplified - adjust based on your data model)
+        Book book = getBookById(itemId);
+        if (book != null && controller.removeBookFromCart(book)) {
+            JOptionPane.showMessageDialog(this, "Item removed successfully.");
+            // Update UI - for now, just hide the item (ideal would be to refresh from model)
+            if (itemId == 1) {
+                kafkaBookLabel.setVisible(false);
+                kafkaBookTitle.setVisible(false);
+                authorsName.setVisible(false);
+                increasingDecreasing.setVisible(false);
+                priceLabel.setVisible(false);
+                deleteLabel.setVisible(false);
+                wishlistLabel.setVisible(false);
+            } else if (itemId == 2) {
+                jLabel1.setVisible(false);
+                jLabel2.setVisible(false);
+                jLabel3.setVisible(false);
+                jLabel4.setVisible(false);
+                jLabel7.setVisible(false);
+                jLabel5.setVisible(false);
+                jLabel6.setVisible(false);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to remove item.");
+        }
+    }
+
+    private void moveToWishlist(int itemId) {
+        Book book = getBookById(itemId);
+        if (book != null && controller.moveToWishlist(book)) {
+            JOptionPane.showMessageDialog(this, "Item moved to wishlist successfully.");
+            // Remove from cart UI (same as removeItem for now)
+            removeItem(itemId);
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to move item to wishlist.");
+        }
+    }
+
+    private Book getBookById(int itemId) {
+        // Simplified mapping - replace with actual data from model
+        if (itemId == 1) {
+            return new Book(1, "Metamorphosis", "Franz Kafka", 720.0, "Used", 1, "available");
+        } else if (itemId == 2) {
+            return new Book(2, "Intermezzo", "Sally Rooney", 819.0, "New", 1, "available");
+        }
+        return null;
+    }
 }

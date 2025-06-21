@@ -5,11 +5,22 @@
  */
 package bindle_project.View;
 
+import bindle_project.Model.User;
+import bindle_project.Model.WishlistModel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.print.Book;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -26,10 +37,49 @@ public void updateCartDisplay(int itemCount) {
      * Creates new form HomeScreen
      */
     public HomeScreen() {
-        initComponents();
+        initComponents(); // Ensure components are initialized first
+        System.out.println("HomeScreen initialized. Sell: " + (sell != null ? "not null" : "null") + ", Logout: " + (Logout != null ? "not null" : "null") + ", SearchButton: " + (SearchButton != null ? "not null" : "null"));
+       SearchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                navigateToSearch();
+            }
+        });
+        HeartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                navigateToWishlist();
+            }
+        });
+        CartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                navigateToCart();
+            }
+        });
+        profile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                navigateToLogin();
+            }
+        });
+//        sell.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                navigateToSeller();
+//            }
+//        });
+        Logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Logging out and exiting application");
+                System.exit(0); // Exit the application
+            }
+        });
+
+        // Align searchTextField action with SearchButton
         
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,10 +90,6 @@ public void updateCartDisplay(int itemCount) {
     private void initComponents() {
 
         labelLogo = new javax.swing.JLabel();
-        labelCartIcon = new javax.swing.JLabel();
-        labelHeartIcon = new javax.swing.JLabel();
-        labelSearchLogo = new javax.swing.JLabel();
-        searchTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         labelLogoTitle = new javax.swing.JLabel();
         labelLogoSubTitle = new javax.swing.JLabel();
@@ -51,63 +97,39 @@ public void updateCartDisplay(int itemCount) {
         labelForAll = new javax.swing.JLabel();
         labelShopNow = new javax.swing.JLabel();
         SearchButton = new javax.swing.JButton();
+        Logout = new javax.swing.JButton();
+        profile = new javax.swing.JButton();
+        sell = new javax.swing.JButton();
+        HeartButton = new javax.swing.JButton();
+        CartButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/BindleBook.png"))); // NOI18N
         labelLogo.setText("jLabel1");
-        getContentPane().add(labelLogo);
-        labelLogo.setBounds(6, 28, 62, 40);
-
-        labelCartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Cart.png"))); // NOI18N
-        labelCartIcon.setText("jLabel2");
-        getContentPane().add(labelCartIcon);
-        labelCartIcon.setBounds(630, 30, 53, 30);
-
-        labelHeartIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Heart.png"))); // NOI18N
-        labelHeartIcon.setText("jLabel3");
-        getContentPane().add(labelHeartIcon);
-        labelHeartIcon.setBounds(590, 30, 30, 30);
-
-        labelSearchLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/SearchIcon.png"))); // NOI18N
-        labelSearchLogo.setText("jLabel4");
-        getContentPane().add(labelSearchLogo);
-        labelSearchLogo.setBounds(260, 30, 37, 30);
-
-        searchTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextFieldActionPerformed(evt);
-            }
-        });
-        getContentPane().add(searchTextField);
-        searchTextField.setBounds(260, 30, 240, 30);
+        getContentPane().add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 28, 62, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/HomeScreenBookshelf.png"))); // NOI18N
         jLabel1.setText("Search");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(370, 100, 310, 400);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 310, 400));
 
         labelLogoTitle.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         labelLogoTitle.setText("Bindle");
-        getContentPane().add(labelLogoTitle);
-        labelLogoTitle.setBounds(80, 20, 200, 50);
+        getContentPane().add(labelLogoTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 200, 50));
 
         labelLogoSubTitle.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         labelLogoSubTitle.setText("Reselling academic and non academic books ");
-        getContentPane().add(labelLogoSubTitle);
-        labelLogoSubTitle.setBounds(80, 60, 280, 17);
+        getContentPane().add(labelLogoSubTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 280, -1));
 
         labelBooks.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         labelBooks.setText("B00KS");
-        getContentPane().add(labelBooks);
-        labelBooks.setBounds(40, 170, 210, 50);
+        getContentPane().add(labelBooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 210, 50));
 
         labelForAll.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         labelForAll.setText("F0R ALL");
-        getContentPane().add(labelForAll);
-        labelForAll.setBounds(40, 210, 250, 56);
+        getContentPane().add(labelForAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 250, -1));
 
         labelShopNow.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         labelShopNow.setText("SHOP NOW");
@@ -117,27 +139,60 @@ public void updateCartDisplay(int itemCount) {
                 labelShopNowMouseClicked(evt);
             }
         });
-        getContentPane().add(labelShopNow);
-        labelShopNow.setBounds(40, 270, 140, 50);
+        getContentPane().add(labelShopNow, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 140, 50));
 
+        SearchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/SearchIcon.png"))); // NOI18N
         SearchButton.setText("Search");
-        getContentPane().add(SearchButton);
-        SearchButton.setBounds(510, 30, 70, 23);
+        SearchButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchButtonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(SearchButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 140, -1));
+
+        Logout.setText("LogOut");
+        getContentPane().add(Logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, -1, -1));
+
+        profile.setText("Profile");
+        getContentPane().add(profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 75, -1));
+
+        sell.setText("Sell");
+        sell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sellActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sell, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 75, 40));
+
+        HeartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mylist.png"))); // NOI18N
+        HeartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HeartButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(HeartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, -1, -1));
+
+        CartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/CART.png"))); // NOI18N
+        getContentPane().add(CartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, -1, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
-        
-        BookGridScreen bookGrid = new BookGridScreen();
-        bookGrid.setVisible(true);
-        this.setVisible(false);
-
-    }//GEN-LAST:event_searchTextFieldActionPerformed
-
     private void labelShopNowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelShopNowMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_labelShopNowMouseClicked
+
+    private void sellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sellActionPerformed
+
+    private void HeartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HeartButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HeartButtonActionPerformed
+
+    private void SearchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -165,6 +220,22 @@ public void updateCartDisplay(int itemCount) {
             java.util.logging.Logger.getLogger(HomeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(HomeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(HomeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(HomeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(HomeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -175,29 +246,30 @@ public void updateCartDisplay(int itemCount) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CartButton;
+    private javax.swing.JButton HeartButton;
+    private javax.swing.JButton Logout;
     private javax.swing.JButton SearchButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelBooks;
-    private javax.swing.JLabel labelCartIcon;
     private javax.swing.JLabel labelForAll;
-    private javax.swing.JLabel labelHeartIcon;
     private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelLogoSubTitle;
     private javax.swing.JLabel labelLogoTitle;
-    private javax.swing.JLabel labelSearchLogo;
     private javax.swing.JLabel labelShopNow;
-    private javax.swing.JTextField searchTextField;
+    private javax.swing.JButton profile;
+    private javax.swing.JButton sell;
     // End of variables declaration//GEN-END:variables
-public void displaySearchResults(List<Book> books) {
-        JPanel resultsPanel = new JPanel(new GridLayout(books.size(), 1));
-        for (Book book : books) {
-            JLabel label = new JLabel(book.getTitle() + " by " + book.getAuthor() + " - $" + book.getPrice());
-            resultsPanel.add(label);
-        }
-        add(new JScrollPane(resultsPanel), BorderLayout.CENTER);
-        revalidate();
-        repaint();
-    }
+//public void displaySearchResults(List<Book> books) {
+//        JPanel resultsPanel = new JPanel(new GridLayout(books.size(), 1));
+//        for (Book book : books) {
+//            JLabel label = new JLabel(book.getTitle() + " by " + book.getAuthor() + " - $" + book.getPrice());
+//            resultsPanel.add(label);
+//        }
+//        add(new JScrollPane(resultsPanel), BorderLayout.CENTER);
+//        revalidate();
+//        repaint();
+//    }
 
     @Override
     public void setVisible(boolean visible) {
@@ -206,9 +278,108 @@ public void displaySearchResults(List<Book> books) {
     public javax.swing.JButton getSearchButton() {
         return SearchButton;
     }
+    public javax.swing.JButton getHeartButton(){
+    return HeartButton;}
+     public javax.swing.JButton getCartButton(){
+    return CartButton;}
+     
 
-    public javax.swing.JTextField getSearchField() {
-        return searchTextField;
+   
+    public javax.swing.JButton getLogoutButton(){
+    return Logout;}
+     public javax.swing.JButton getSellButton(){
+    return sell;}
+     
+   private void navigateToWishlist() {
+        System.out.println("Attempting to navigate to Wishlist");
+        try {
+            Connection connection = getDbConnection();
+            if (connection != null) {
+                // Use a valid User constructor with placeholder values
+                User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder User
+                WishlistModel model = new WishlistModel(currentUser, connection);
+                WishlistScreen wishlist = new WishlistScreen(model);
+                System.out.println("WishlistScreen created successfully");
+                wishlist.setVisible(true);
+                System.out.println("WishlistScreen set visible");
+                this.setVisible(false);
+            } else {
+                System.out.println("Database connection failed, cannot navigate to Wishlist");
+            }
+        } catch (Exception e) {
+            System.out.println("Error navigating to Wishlist: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-    
+
+    private Connection getDbConnection() {
+        System.out.println("Attempting to connect to database...");
+        try {
+            String url = "jdbc:mysql://localhost:3306/JavaProjectBindle"; // Ensure this matches your setup
+            String user = "root"; // Default MySQL username, adjust if changed
+            String password = "roji@123"; // Default password might be empty, adjust if set
+            System.out.println("Using URL: " + url + ", User: " + user);
+            Connection conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Database connection established successfully");
+            return conn;
+        } catch (SQLException e) {
+            System.out.println("Failed to connect to database: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
+    private void navigateToCart() {
+        System.out.println("Attempting to navigate to Cart");
+        try {
+            CartScreen cart = new CartScreen();
+            System.out.println("CartScreen created successfully");
+            cart.setVisible(true);
+            System.out.println("CartScreen set visible");
+            this.setVisible(false);
+        } catch (Exception e) {
+            System.out.println("Error navigating to Cart: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    private void navigateToLogin() {
+        System.out.println("Attempting to navigate to Login");
+        try {
+            LoginInterfacee login = new LoginInterfacee(); // Replace with your actual LoginScreen class
+            System.out.println("LoginScreen created successfully");
+            login.setVisible(true);
+            System.out.println("LoginScreen set visible");
+            this.setVisible(false);
+        } catch (Exception e) {
+            System.out.println("Error navigating to Login: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    private void navigateToSearch() {
+        System.out.println("Attempting to navigate to Search");
+        try {
+            BookGridScreen bookGrid = new BookGridScreen();
+            System.out.println("BookGridScreen created successfully");
+            bookGrid.setVisible(true);
+            System.out.println("BookGridScreen set visible");
+            this.setVisible(false);
+        } catch (Exception e) {
+            System.out.println("Error navigating to Search: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+//    private void navigateToSeller() {
+//        System.out.println("Attempting to navigate to Seller");
+//        try {
+//            SellerScreen seller = new SellerScreen(); // Replace with your actual SellerScreen class
+//            System.out.println("SellerScreen created successfully");
+//            seller.setVisible(true);
+//            System.out.println("SellerScreen set visible");
+//            this.setVisible(false);
+//        } catch (Exception e) {
+//            System.out.println("Error navigating to Seller: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
+     
 }

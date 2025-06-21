@@ -41,6 +41,11 @@ public class Book {
     public String getStatus() { return status; }
     public String getDescription() { return description; }
 
+    // Setter for description (optional, if needed)
+    public void setDescription(String description) {
+        this.description = description != null ? description : "No description available";
+    }
+
     @Override
     public String toString() {
         return title + " by " + author + " (Rs. " + price + ")";
