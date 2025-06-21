@@ -421,9 +421,9 @@ private void navigateToHome() {
     private Book getBookById(int itemId) {
         // Simplified mapping - replace with actual data from model
         if (itemId == 1) {
-            return new Book(1, "Metamorphosis", "Franz Kafka", 720.0, "Used", 1, "available");
+            return new Book(1, "Metamorphosis", "Franz Kafka", "Used", "available");
         } else if (itemId == 2) {
-            return new Book(2, "Intermezzo", "Sally Rooney", 819.0, "New", 1, "available");
+            return new Book(2, "Intermezzo", "Sally Rooney", "New", "available");
         }
         return null;
     }

@@ -354,17 +354,23 @@ public void updateCartDisplay(int itemCount) {
             e.printStackTrace();
         }
     }
-    private void navigateToSearch() {
-        System.out.println("Attempting to navigate to Search");
-        try {
-            BookGridScreen bookGrid = new BookGridScreen();
-            System.out.println("BookGridScreen created successfully");
-            bookGrid.setVisible(true);
-            System.out.println("BookGridScreen set visible");
-            this.setVisible(false);
-        } catch (Exception e) {
-            System.out.println("Error navigating to Search: " + e.getMessage());
-            e.printStackTrace();
+   public void navigateToSearch() {
+        System.out.println("Attempting to navigate to Search from HomeScreen");
+        Connection conn = getDbConnection();
+        if (conn != null) {
+            try {
+                search searchScreen = new search();
+                System.out.println("Search screen instance created: " + (searchScreen != null ? "success" : "failure"));
+                searchScreen.setVisible(true);
+                System.out.println("Search screen set visible");
+                this.setVisible(false);
+            } catch (Exception e) {
+                System.out.println("Error creating or showing Search screen: " + e.getMessage());
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error navigating to Search: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Database connection failed. Cannot navigate to Search.");
         }
     }
 
