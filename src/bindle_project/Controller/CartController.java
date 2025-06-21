@@ -4,65 +4,46 @@
  */
 package bindle_project.Controller;
 
-import bindle_project.Dao.CartDao;
 import bindle_project.Model.Cart;
-import bindle_project.View.HomeScreen;
 import bindle_project.Model.Book;
-import javax.swing.JOptionPane;
+import bindle_project.Model.WishlistModel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JFrame;
 
-/**
- *
- * @author acer
- */
 public class CartController {
-   private HomeScreen view;
-    private CartDao cartDao;
-    private int userId;
+    private Cart cartModel;
+    private JFrame view;
 
-    public CartController(HomeScreen view, int userId) {
+    public CartController(Cart model, JFrame view) {
+        this.cartModel = model;
         this.view = view;
-        this.cartDao = new CartDao();
-        this.userId = userId;
-        if (userId <= 0) {
-            throw new IllegalArgumentException("User ID must be positive");
-        }
     }
 
-    public void addToCart(Book book) {
-        if (book == null) {
-            JOptionPane.showMessageDialog(view, "Cannot add null book to cart.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+    public boolean removeBookFromCart(Book book) {
+        if (book == null || cartModel == null || cartModel.getConnection() == null) return false;
+        return cartModel.removeBookFromCart(book);
+    }
+
+    public boolean moveToWishlist(Book book) {
+        if (book == null || cartModel == null || cartModel.getConnection() == null) return false;
         try {
-            cartDao.addToCart(userId, book);
-            int itemCount = cartDao.getCart(userId).getItems().size();
-            view.updateCartDisplay(itemCount);
-            JOptionPane.showMessageDialog(view, "Book added to cart! Total items: " + itemCount, "Success", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(view, "Error adding book to cart: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+            // Remove from cart
+            if (!removeBookFromCart(book)) return false;
 
-    public void removeFromCart(Book book) {
-       if (book == null) {
-        JOptionPane.showMessageDialog(view, "Cannot remove null book from cart.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    try {
-        Cart cart = cartDao.getCart(userId);
-        if (cart != null && cart.removeBook(book)) {
-                int itemCount = cart.getItems().size();
-                view.updateCartDisplay(itemCount);
-            JOptionPane.showMessageDialog(view, "Book removed from cart! Total items: " + itemCount, "Success", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(view, "Book not found in cart.", "Warning", JOptionPane.WARNING_MESSAGE);
+            // Add to wishlist
+            WishlistModel wishlistModel = new WishlistModel(cartModel.getUser(), cartModel.getConnection());
+            String sql = "INSERT INTO wishlists (user_id, book_id) VALUES (?, ?)";
+            PreparedStatement stmt = cartModel.getConnection().prepareStatement(sql);
+            stmt.setInt(1, cartModel.getUser().getId());
+            stmt.setInt(2, book.getId());
+            int rowsAffected = stmt.executeUpdate();
+            stmt.close();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Error moving book to wishlist: " + e.getMessage());
+            return false;
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(view, "Error removing book from cart: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    }
-
-    public Cart getCartItems() {
-        return cartDao.getCart(userId);
     }
 }

@@ -5,15 +5,11 @@
 package bindle_project.Controller;
 
 import bindle_project.Dao.SearchDao;
+import bindle_project.Model.Book; // Added import for Book class
 import bindle_project.Model.Search;
 import bindle_project.View.HomeScreen;
-import java.awt.print.Book;
 import java.util.List;
 
-/**
- *
- * @author acer
- */
 public class SearchController {
     private HomeScreen view;
     private SearchDao searchDao;
@@ -26,6 +22,6 @@ public class SearchController {
     public void performSearch(String keyword) {
         Search search = new Search(keyword);
         List<Book> results = searchDao.searchBooks(search.getKeyword());
-        view.displaySearchResults(results); // Assume HomeScreen has this method
+        view.displaySearchResults(results); // Ensure this method exists
     }
 }

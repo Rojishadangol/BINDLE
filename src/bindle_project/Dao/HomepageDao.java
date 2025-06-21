@@ -36,9 +36,7 @@ public class HomepageDao {
                     rs.getInt("id"),
                     rs.getString("title"),
                     rs.getString("author"),
-                    rs.getDouble("price"),
                     rs.getString("condition"),
-                    rs.getInt("seller_id"),
                     rs.getString("status")
                 );
                 list.add(book);

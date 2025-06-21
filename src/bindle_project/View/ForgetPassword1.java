@@ -216,5 +216,17 @@ confirmShow.setText(visible ? "Hide":"Show");}
 public javax.swing.JButton getCancelButton(){
 return cancel;
 }
+
+    public javax.swing.JButton getResetButton() {
+return reset;    }
+
+    public javax.swing.JTextField getEmailField() {
+return mail;    }
+
+    public javax.swing.JPasswordField getPasswordField() {
+return newPasswordField;    }
+
+    public javax.swing.JPasswordField getConfirmPasswordField() {
+ return   confirmPasswordField;  }
    
 }

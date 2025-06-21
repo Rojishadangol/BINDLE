@@ -4,13 +4,14 @@
  */
 package bindle_project.Model;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author acer
  */
-import java.io.*;
-import java.util.*;
-
 public class OrderHistory implements Serializable {
     private static final long serialVersionUID = 1L;
     private List<Order> orders;
@@ -27,7 +28,7 @@ public class OrderHistory implements Serializable {
     }
 
     public List<Order> getOrders() {
-        return orders;
+        return new ArrayList<>(orders); // Return a copy to prevent external modification
     }
 
     // Save orders to file
@@ -44,7 +45,7 @@ public class OrderHistory implements Serializable {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             return (OrderHistory) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            return new OrderHistory();  // Return empty if file not found
+            return new OrderHistory(); // Return empty if file not found
         }
     }
 }

@@ -4,39 +4,63 @@
  */
 package bindle_project.Model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author acer
- */
 public class Cart {
-    private List<Book> items;
-    private int userId;
+    private User user;
+    private Connection connection;
 
-    public Cart(int userId) {
-        this.userId = userId;
-        this.items = new ArrayList<>();
+    public Cart(User user, Connection connection) {
+        this.user = user;
+        this.connection = connection;
     }
 
-    public void addBook(Book book) {
-        if (book != null) {
-            items.add(book);
+    public List<Book> getCartBooks() {
+        List<Book> books = new ArrayList<>();
+        try {
+            String sql = "SELECT b.id, b.title, b.author, b.price, b.condition, b.seller_id, b.status " +
+                         "FROM carts c JOIN books b ON c.book_id = b.id WHERE c.user_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Book book = new Book(
+                    rs.getInt("id"),
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    rs.getString("condition"),
+                    rs.getString("status")
+                );
+                books.add(book);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println("Error fetching cart books: " + e.getMessage());
+        }
+        return books;
+    }
+
+    public boolean removeBookFromCart(Book book) {
+        try {
+            String sql = "DELETE FROM carts WHERE user_id = ? AND book_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            stmt.setInt(2, book.getId());
+            int rowsAffected = stmt.executeUpdate();
+            stmt.close();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Error removing book from cart: " + e.getMessage());
+            return false;
         }
     }
 
-    public List<Book> getItems() {
-        return new ArrayList<>(items); // Return a copy to prevent external modification
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public boolean removeBook(Book book) {
-        if (book != null) {
-            return items.remove(book);
-        }
-        return false;
-    }
+    public Connection getConnection() { return connection; }
+    public User getUser() { return user; }
 }

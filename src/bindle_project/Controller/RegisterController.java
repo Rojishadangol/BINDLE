@@ -14,10 +14,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author acer
- */
 public class RegisterController {
     private RegisterView view;
     private AuthModel authModel;
@@ -27,13 +23,10 @@ public class RegisterController {
         this.view = view;
         this.authModel = new AuthModel();
 
-        // Set up action listeners
-        RegisterUser register = new RegisterUser();
-    this.view.registerUser(new RegisterUser());
-    view.showPasswordButtonListener(new ShowPasswordListener());
-        view.showPasswordButtonListener1(new ShowPasswordListener1());
-        // Navigate to login on "Already have an account" click
-        this.view.getAlreadyHaveAnAccount().addMouseListener(new MouseAdapter() {
+        view.getRegisterButton().addActionListener(new RegisterUser()); // Corrected to use getRegisterButton
+        view.showPasswordButtonListener(new RegisterController.ShowPasswordListener());
+        view.showPasswordButtonListener1(new RegisterController.ShowPasswordListener1());
+        view.getAlreadyHaveAnAccount().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 navigateToLogin();
@@ -50,10 +43,10 @@ public class RegisterController {
     }
 
     public void navigateToLogin() {
-        close(); // Close registration window
+        close();
         LoginView loginView = new LoginView();
-        LoginController login = new LoginController(loginView, authModel); // Reuse AuthModel instance
-        login.open(); // Open login window
+        LoginController login = new LoginController(loginView, authModel);
+        login.open();
     }
 
     private class RegisterUser implements ActionListener {
@@ -87,7 +80,7 @@ public class RegisterController {
         @Override
         public void actionPerformed(ActionEvent e) {
             isPasswordVisible = !isPasswordVisible;
-            view.togglePasswordField(isPasswordVisible);
+            view.tooglePasswordField(isPasswordVisible);
         }
     }
 
@@ -95,7 +88,7 @@ public class RegisterController {
         @Override
         public void actionPerformed(ActionEvent e) {
             isPasswordVisible = !isPasswordVisible;
-            view.togglePasswordField1(isPasswordVisible); // Assuming separate method for confirm password
+            view.tooglePasswordField1(isPasswordVisible);
         }
     }
 }

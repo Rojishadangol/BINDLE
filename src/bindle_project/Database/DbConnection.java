@@ -43,4 +43,5 @@ public interface DbConnection {
             throw new RuntimeException("Database initialization error: " + e.getMessage());
         }
     }
+    
 }

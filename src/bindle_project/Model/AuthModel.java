@@ -31,4 +31,11 @@ public class AuthModel {
     private boolean isValidEmail(String email) {
         return email != null && email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     }
+
+    public boolean resetPassword(String email, String newPassword) {
+        return UserDao.updatePassword(email, newPassword); // Delegate to UserDao
+    }
+
+    // Remove the duplicate method
+    // public boolean resetPassword(String email, String newPass) { ... } // Deleted
 }
