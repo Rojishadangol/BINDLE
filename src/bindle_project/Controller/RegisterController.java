@@ -4,78 +4,91 @@
  */
 package bindle_project.Controller;
 
-import bindle_project.Dao.UserDao;
+import bindle_project.Model.AuthModel;
 import bindle_project.Model.UserData;
+import bindle_project.View.LoginView;
 import bindle_project.View.RegisterView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author acer
- */
 public class RegisterController {
-    RegisterView view= new RegisterView();
-        private boolean isPasswordVisisble=false;
+    private RegisterView view;
+    private AuthModel authModel;
+    private boolean isPasswordVisible = false;
 
-    public RegisterController(RegisterView view){
-    this.view=view;
-    RegisterUser register = new RegisterUser();
-    this.view.registerUser(new RegisterUser());
-    view.showPasswordButtonListener(new ShowPasswordListener());
-        view.showPasswordButtonListener1(new ShowPasswordListener1());
+    public RegisterController(RegisterView view) {
+        this.view = view;
+        this.authModel = new AuthModel();
 
-
-    }
-    public void open(){
-    view.setVisible(true);
-    }
-    public void close(){
-    view.dispose();
-    }
-    
-    class RegisterUser implements ActionListener{
-    @Override
-    public void actionPerformed(ActionEvent e){
-    String name= view.getNameTextField().getText();
-    String email=view.getEmailTextField().getText();
-    String password=
-            String.valueOf(view.getPasswordField().getPassword());
-    String confirmPassword=
-            String.valueOf(view.getConfirmPassword().getPassword());
-    if (name.isEmpty()||email.isEmpty()||password.isEmpty()|confirmPassword.isEmpty()){
-        JOptionPane.showMessageDialog(view,"Fill in this field");
-    }
-    else if(!password.equals(confirmPassword)){
-        JOptionPane.showMessageDialog(view,"Passwords do not match");
-    }
-    else{
-    UserDao userDao=new UserDao();
-    UserData user= new UserData(name,email,password);
-    boolean result=userDao.register(user);
-    if (result){
-                JOptionPane.showMessageDialog(view,"Registered Successfully");
-                
-            }else{
-               JOptionPane.showMessageDialog(view,"Failed to Register");
+        view.getRegisterButton().addActionListener(new RegisterUser()); // Corrected to use getRegisterButton
+        view.showPasswordButtonListener(new RegisterController.ShowPasswordListener());
+        view.showPasswordButtonListener1(new RegisterController.ShowPasswordListener1());
+        view.getAlreadyHaveAnAccount().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                navigateToLogin();
             }
+        });
     }
-    }}
-    class ShowPasswordListener implements ActionListener{
 
+    public void open() {
+        view.setVisible(true);
+    }
+
+    public void close() {
+        view.dispose();
+    }
+
+    public void navigateToLogin() {
+        close();
+        LoginView loginView = new LoginView();
+        LoginController login = new LoginController(loginView, authModel);
+        login.open();
+    }
+
+    private class RegisterUser implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            isPasswordVisisble= !isPasswordVisisble;
-view.tooglePasswordField(isPasswordVisisble);        
-view.tooglePasswordField(isPasswordVisisble);        
+            String name = view.getNameTextField().getText().trim();
+            String email = view.getEmailTextField().getText().trim();
+            String password = new String(view.getPasswordField().getPassword());
+            String confirmPassword = new String(view.getConfirmPassword().getPassword());
 
-        }}
-        class ShowPasswordListener1 implements ActionListener{
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "Fill in all fields");
+                return;
+            }
+            if (!password.equals(confirmPassword)) {
+                JOptionPane.showMessageDialog(view, "Passwords do not match");
+                return;
+            }
 
+            UserData userData = authModel.register(email, password, name);
+            if (userData != null) {
+                JOptionPane.showMessageDialog(view, "Registered Successfully");
+                navigateToLogin();
+            } else {
+                JOptionPane.showMessageDialog(view, "Failed to Register");
+            }
+        }
+    }
+
+    private class ShowPasswordListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            isPasswordVisisble= !isPasswordVisisble;
-view.tooglePasswordField(isPasswordVisisble);  }
-    
-    }}
+            isPasswordVisible = !isPasswordVisible;
+            view.tooglePasswordField(isPasswordVisible);
+        }
+    }
+
+    private class ShowPasswordListener1 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isPasswordVisible = !isPasswordVisible;
+            view.tooglePasswordField1(isPasswordVisible);
+        }
+    }
+}
