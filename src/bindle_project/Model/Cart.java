@@ -15,8 +15,8 @@ public class Cart {
     private User user;
     private Connection connection;
 
-    public Cart(User user, Connection connection) {
-        this.user = user;
+    public Cart(User user) {
+        this.User = user;
         this.connection = connection;
     }
 
@@ -63,4 +63,8 @@ public class Cart {
 
     public Connection getConnection() { return connection; }
     public User getUser() { return user; }
+
+    public void addBook(Book book) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

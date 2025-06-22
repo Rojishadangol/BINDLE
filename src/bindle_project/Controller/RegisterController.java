@@ -54,44 +54,44 @@ public class RegisterController {
     }
 
     private class RegisterUser implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            String name = view.getNameTextField().getText().trim();
-            String email = view.getEmailTextField().getText().trim();
-            String password = new String(view.getPasswordField().getPassword());
-            String confirmPassword = new String(view.getConfirmPassword().getPassword());
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String name = view.getNameTextField().getText().trim();
+        String email = view.getEmailTextField().getText().trim();
+        String password = new String(view.getPasswordField().getPassword());
+        String confirmPassword = new String(view.getConfirmPassword().getPassword());
 
-            if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                JOptionPane.showMessageDialog(view, "Fill in all fields");
-                return;
-            }
-            if (!password.equals(confirmPassword)) {
-                JOptionPane.showMessageDialog(view, "Passwords do not match");
-                return;
-            }
-            if (generatedOtp == null || !isOtpVerified()) {
-                JOptionPane.showMessageDialog(view, "Please send and verify OTP first.");
-                return;
-            }
-
-            // OTP is verified, proceed with registration
-            UserData userData = authModel.register(email, password, name);
-            if (userData != null) {
-                JOptionPane.showMessageDialog(view, "Registered Successfully");
-                view.setOtpFieldVisible(false);
-                view.setVerifyButtonVisible(false);
-                view.setSendOtpButtonVisible(false);
-                navigateToLogin();
-            } else {
-                JOptionPane.showMessageDialog(view, "Failed to Register", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            JOptionPane.showMessageDialog(view, "Fill in all fields");
+            return;
         }
+        if (!password.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(view, "Passwords do not match");
+            return;
+        }
+        if (generatedOtp == null || !isOtpVerified()) {
+            JOptionPane.showMessageDialog(view, "Please send and verify OTP first.");
+            return;
+        }
+
+        UserData userData = authModel.register(email, password, name);
+        if (userData != null) {
+            JOptionPane.showMessageDialog(view, "Registered Successfully");
+            view.setOtpFieldVisible(false);
+            view.setVerifyButtonVisible(false);
+            view.setSendOtpButtonVisible(false);
+            navigateToLogin();
+        } else {
+            JOptionPane.showMessageDialog(view, "Failed to Register or invalid email", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+}
 
         private boolean isOtpVerified() {
             // Assume OTP is verified if the field is visible and not empty after verification
             return view.getOtpField().isVisible() && !view.getOtpField().getText().trim().isEmpty();
         }
-    }
+    
 
     private class SendOtpListener implements ActionListener {
         @Override
