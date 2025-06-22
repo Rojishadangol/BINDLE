@@ -74,7 +74,6 @@ public class RegisterController {
                 return;
             }
 
-            // OTP is verified, proceed with registration
             UserData userData = authModel.register(email, password, name);
             if (userData != null) {
                 JOptionPane.showMessageDialog(view, "Registered Successfully");
@@ -83,12 +82,11 @@ public class RegisterController {
                 view.setSendOtpButtonVisible(false);
                 navigateToLogin();
             } else {
-                JOptionPane.showMessageDialog(view, "Failed to Register", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Failed to Register or invalid email", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
         private boolean isOtpVerified() {
-            // Assume OTP is verified if the field is visible and not empty after verification
             return view.getOtpField().isVisible() && !view.getOtpField().getText().trim().isEmpty();
         }
     }
@@ -107,7 +105,7 @@ public class RegisterController {
             if (SMTPSMailSender.sendMail(email, subject, body)) {
                 view.setOtpFieldVisible(true);
                 view.setVerifyButtonVisible(true);
-                view.setSendOtpButtonVisible(false); // Hide after sending
+                view.setSendOtpButtonVisible(false);
                 view.getVerifyButton().addActionListener(new VerifyOtpListener());
                 JOptionPane.showMessageDialog(view, "An OTP has been sent to " + email + ". Please verify.");
             } else {
@@ -122,7 +120,7 @@ public class RegisterController {
             String enteredOtp = view.getOtpField().getText().trim();
             if (generatedOtp != null && generatedOtp.equals(enteredOtp)) {
                 JOptionPane.showMessageDialog(view, "OTP verified successfully!");
-                view.getRegisterButton().setEnabled(true); // Enable Register after verification
+                view.getRegisterButton().setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(view, "Invalid OTP. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }

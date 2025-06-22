@@ -25,9 +25,11 @@ public class SearchController {
 
     public void performSearch(String keyword) {
         Search search = new Search(keyword);
-//        List<Book> books = booksModel.searchBooks(query);
-//        view.displaySearchResults(results); // Assume HomeScreen has this method
-//        List<Book> results = searchDao.searchBooks(search.getKeyword());
-//        view.displaySearchResults(results); // Ensure this method exists
+        List<Book> results = searchDao.searchBooks(search.getKeyword());
+        view.displaySearchResults(results); // Ensure this method exists
+        
+    }
+    public List<String> getSuggestions(String partialKeyword) {
+        return searchDao.getSuggestions(partialKeyword);
     }
 }

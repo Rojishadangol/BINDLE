@@ -5,8 +5,11 @@
 // LoginController.java
 package bindle_project.Controller;
 
+import bindle_project.View.DeactivateAccountUI;
 import bindle_project.View.LoginInterfacee;
-import java.io.File;
+import bindle_project.View.UpdatePassword;
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
@@ -58,8 +61,7 @@ public class LoginInterfaceController {
             JOptionPane.showMessageDialog(null, "Profile updated successfully!");
         }
     }
-
-    // Cancel button functionality
+//    Cancel button functionality
     class CancelButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -87,3 +89,5 @@ public class LoginInterfaceController {
         }
     }
 }
+
+

@@ -13,7 +13,7 @@ public class description extends javax.swing.JFrame {
     /**
      * Creates new form description
      */
-    public description() {
+    public description(String bookTitle) {
         initComponents();
     }
 
@@ -305,7 +305,7 @@ public class description extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new description().setVisible(true);
+                new description(bookTitle).setVisible(true);
             }
         });
     }

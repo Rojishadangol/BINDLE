@@ -50,4 +50,27 @@ public class SearchDao {
         }
         return books;
     }
+    public List<String> getSuggestions(String partialKeyword) {
+        List<String> suggestions = new ArrayList<>();
+        if (partialKeyword == null || partialKeyword.trim().isEmpty()) {
+            return suggestions; // Return empty list for null or empty input
+        }
+
+        String sql = "SELECT DISTINCT title FROM books WHERE title LIKE ? AND status = 'available' LIMIT 5";
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%" + partialKeyword.trim() + "%");
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    suggestions.add(rs.getString("title"));
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error fetching suggestions: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            System.err.println("SQLException in getSuggestions: " + e.getMessage());
+        }
+        return suggestions;
+    }
 }

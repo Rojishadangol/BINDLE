@@ -55,8 +55,12 @@ public class DeactivateAccountUI extends JFrame {
         deactivateBtn.setBackground(Color.BLUE);
         deactivateBtn.setForeground(Color.WHITE);
 
-        cancelBtn.addActionListener(e -> dispose());
-        deactivateBtn.addActionListener(e -> showConfirmationDialog());
+        cancelBtn.addActionListener(e -> {
+            // Navigate back to LoginInterfacee
+            LoginInterfacee loginInterface = new LoginInterfacee();
+            loginInterface.setVisible(true);
+            dispose(); // Close the current DeactivateAccountUI
+        });
 
         btnPanel.add(cancelBtn);
         btnPanel.add(deactivateBtn);
