@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package bindle_project.Controller;
-import bindle_project.Dao.UserDao;
-import java.awt.print.Book;
+import bindle.project.dao.userdao;
+import model.Book;
 
 import java.util.List;
 /**
@@ -16,14 +16,14 @@ public class controller {
 
 
 public class BookController {
-    private UserDao userdao;
+    private userdao userdao;
 
     public BookController() {
-        userdao = new UserDao();
+        userdao = new userdao();
     }
 
     public List<Book> search(String keyword) {
-        return userdao.search(keyword);
+        return userdao.searchBooks(keyword);
     }
 }
 

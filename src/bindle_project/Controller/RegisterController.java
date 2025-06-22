@@ -4,7 +4,7 @@
  */
 package bindle_project.Controller;
 
-import bindle_project.Dao.UseDao;
+import bindle_project.Dao.UserDao;
 import bindle_project.Model.UserData;
 import bindle_project.View.RegisterView;
 import java.awt.event.ActionEvent;
@@ -51,7 +51,7 @@ public class RegisterController {
         JOptionPane.showMessageDialog(view,"Passwords do not match");
     }
     else{
-    BookDAO userDao=new BookDAO();
+    UserDao userDao=new UserDao();
     UserData user= new UserData(name,email,password);
     boolean result=userDao.register(user);
     if (result){

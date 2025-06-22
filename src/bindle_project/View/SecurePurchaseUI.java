@@ -40,45 +40,35 @@ public class SecurePurchaseUI extends javax.swing.JFrame {
         textField3 = new java.awt.TextField();
         textField4 = new java.awt.TextField();
         textField5 = new java.awt.TextField();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel1.setText("BookBindle");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 25, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel2.setText("Secure Book Purchase");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 84, 526, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel3.setText("Full Name:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 142, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel4.setText("Shipping Address:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 228, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel5.setText("Card Number");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 352, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel6.setText("Expiry Date (MM/YY):");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 352, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 0, 0));
         jLabel7.setText("Secure SSL Payment");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 464, -1, -1));
 
         jButton6.setBackground(new java.awt.Color(0, 153, 255));
         jButton6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Purchase Securely");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 506, 408, 44));
 
         textField1.setBackground(new java.awt.Color(51, 255, 255));
         textField1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,16 +76,12 @@ public class SecurePurchaseUI extends javax.swing.JFrame {
                 textField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 176, 428, 33));
 
         textField2.setBackground(new java.awt.Color(0, 255, 255));
-        getContentPane().add(textField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 285, 428, 36));
 
         textField3.setBackground(new java.awt.Color(51, 255, 255));
-        getContentPane().add(textField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 397, 195, 31));
 
         textField4.setBackground(new java.awt.Color(0, 255, 255));
-        getContentPane().add(textField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 397, 94, 31));
 
         textField5.setBackground(new java.awt.Color(0, 255, 255));
 
@@ -211,7 +197,6 @@ public class SecurePurchaseUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private java.awt.TextField textField1;
     private java.awt.TextField textField2;
     private java.awt.TextField textField3;

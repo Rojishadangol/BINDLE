@@ -42,7 +42,7 @@ public class LoginController {
             else{
             LoginRequest loginData= new LoginRequest(email,password);
             UserDao userDao=new UserDao();
-            UserData user= userDao.Login(loginData);
+            UserData user= userDao.login(loginData);
             if (user==null){
             JOptionPane.showMessageDialog(view,"Login Failed");
             }
@@ -54,15 +54,11 @@ public class LoginController {
             
         }
     }
-    
     class ShowPasswordListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-//            isPasswordVisisble= !isPasswordVisisble;
-//view.tooglePasswordField(isPasswordVisisble);       
-        }   
-    
+            isPasswordVisisble= !isPasswordVisisble;
+view.tooglePasswordField(isPasswordVisisble);        }
     }
-
 }
