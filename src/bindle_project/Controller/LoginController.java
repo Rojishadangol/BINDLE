@@ -1,7 +1,9 @@
 package bindle_project.Controller;
 
 import bindle_project.Dao.UserDao;
+
 import bindle_project.Model.AuthModel;
+
 import bindle_project.Model.LoginRequest;
 import bindle_project.Model.UserData;
 import bindle_project.View.ForgetPassword1;
@@ -84,8 +86,6 @@ public class LoginController {
             
             if (user == null) {
                 JOptionPane.showMessageDialog(view, "Invalid email or password");
-            } else if (!user.isVerified()) {
-                JOptionPane.showMessageDialog(view, "Please verify your email first", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(view, "Login Successful");
                 close();
@@ -105,4 +105,8 @@ public class LoginController {
             view.tooglePasswordField(isPasswordVisible); // Corrected typo
         }
     }
+
 }
+
+
+
