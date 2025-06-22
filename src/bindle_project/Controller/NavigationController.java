@@ -10,7 +10,7 @@ import bindle_project.View.CartScreen;
  */
 public class NavigationController {
     public void goToCartScreen() {
-        CartScreen cartScreen = new CartScreen();
+        CartScreen cartScreen = new CartScreen(currentUser);
         cartScreen.setVisible(true);
     }
     

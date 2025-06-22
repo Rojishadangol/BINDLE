@@ -76,6 +76,12 @@ public void updateCartDisplay(int itemCount) {
                 System.exit(0); // Exit the application
             }
         });
+        availablebooks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                navigateToListing();
+            }
+        });
 
         // Align searchTextField action with SearchButton
         
@@ -102,6 +108,7 @@ public void updateCartDisplay(int itemCount) {
         sell = new javax.swing.JButton();
         HeartButton = new javax.swing.JButton();
         CartButton = new javax.swing.JButton();
+        availablebooks = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -174,6 +181,9 @@ public void updateCartDisplay(int itemCount) {
 
         CartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/CART.png"))); // NOI18N
         getContentPane().add(CartButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, -1, 40));
+
+        availablebooks.setText("Available books");
+        getContentPane().add(availablebooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -250,6 +260,7 @@ public void updateCartDisplay(int itemCount) {
     private javax.swing.JButton HeartButton;
     private javax.swing.JButton Logout;
     private javax.swing.JButton SearchButton;
+    private javax.swing.JButton availablebooks;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelBooks;
     private javax.swing.JLabel labelForAll;
@@ -328,19 +339,20 @@ public void updateCartDisplay(int itemCount) {
             return null;
         }
     }
-    private void navigateToCart() {
-        System.out.println("Attempting to navigate to Cart");
-        try {
-            CartScreen cart = new CartScreen();
-            System.out.println("CartScreen created successfully");
-            cart.setVisible(true);
-            System.out.println("CartScreen set visible");
-            this.setVisible(false);
-        } catch (Exception e) {
-            System.out.println("Error navigating to Cart: " + e.getMessage());
-            e.printStackTrace();
-        }
+   private void navigateToCart() {
+    System.out.println("Attempting to navigate to Cart");
+    try {
+        User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder
+        CartScreen cart = new CartScreen(currentUser); // Pass user
+        System.out.println("CartScreen created successfully");
+        cart.setVisible(true);
+        System.out.println("CartScreen set visible");
+        this.setVisible(false);
+    } catch (Exception e) {
+        System.out.println("Error navigating to Cart: " + e.getMessage());
+        e.printStackTrace();
     }
+}
     private void navigateToLogin() {
         System.out.println("Attempting to navigate to Login");
         try {
@@ -387,5 +399,11 @@ public void updateCartDisplay(int itemCount) {
 //            e.printStackTrace();
 //        }
 //    }
+   private void navigateToListing() {
+        Listing listingScreen = new Listing();
+        listingScreen.setVisible(true);
+        // Optionally close HomeScreen
+        // dispose();
+    }
      
 }

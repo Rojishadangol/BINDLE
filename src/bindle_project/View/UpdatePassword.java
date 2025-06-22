@@ -5,6 +5,7 @@
 package bindle_project.View;
 
 
+import bindle_project.Controller.updatecontroller;
 import java.awt.event.ActionListener;
 
 /**
@@ -29,6 +30,8 @@ public class UpdatePassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         NewPassword = new javax.swing.JPasswordField();
@@ -40,6 +43,12 @@ public class UpdatePassword extends javax.swing.JFrame {
         Show1 = new javax.swing.JButton();
         Show2 = new javax.swing.JButton();
         Show3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.add(jLabel5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,6 +92,14 @@ public class UpdatePassword extends javax.swing.JFrame {
         });
         getContentPane().add(Show3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, -1, -1));
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/newlogo.png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 40));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
+
+        jPanel3.setBackground(new java.awt.Color(204, 255, 255));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 380));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -100,6 +117,10 @@ public class UpdatePassword extends javax.swing.JFrame {
     private void Show3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Show3ActionPerformed
+
+    private void Show2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Show2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,28 +169,37 @@ public class UpdatePassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
-public void showpasswordButtonListener(ActionListener listener){
-      Show1.addActionListener(listener);
-}
-public void showpasswordButtonListener1(ActionListener listener){
-      Show2.addActionListener(listener);
-}
-public void showpasswordButtonListener2(ActionListener listener){
-      Show3.addActionListener(listener);
-}
-public void tooglePaawordField1(boolean visible){
-    ConfirmPassword.setEchoChar(visible ?(char)0:'*');
-    ConfirmPassword.setText(visible ? "Hide":"Show");
-}
-public void tooglePaawordField2(boolean visible){
-   NewPassword.setEchoChar(visible ?(char)0:'*');
-    NewPassword.setText(visible ? "Hide":"Show");
-}
-public void tooglePaawordField3(boolean visible){
-   OldPassword.setEchoChar(visible ?(char)0:'*');
-    OldPassword.setText(visible ? "Hide":"Show");
+public void showpasswordButtonListener1(ActionListener listener) {
+    Show1.addActionListener(listener);
 }
 
-    
+public void showpasswordButtonListener2(ActionListener listener) {
+    Show2.addActionListener(listener);
+}
+
+public void showpasswordButtonListener3(ActionListener listener) {
+    Show3.addActionListener(listener);
+}
+
+public void tooglePaawordField1(boolean visible) {
+     OldPassword.setEchoChar(visible ? (char) 0 : '*');
+    Show1.setText(visible ? "Hide" : "Show");
+}
+
+public void tooglePaawordField2(boolean visible) {
+    NewPassword.setEchoChar(visible ? (char) 0 : '*');
+    Show2.setText(visible ? "Hide" : "Show");
+}
+
+public void tooglePaawordField3(boolean visible) { 
+    ConfirmPassword.setEchoChar(visible ? (char) 0 : '*');
+    Show3.setText(visible ? "Hide" : "Show");
+}
+
 }

@@ -366,7 +366,7 @@ private void navigateToHome() {
     private void navigateToCart() {
         System.out.println("Attempting to navigate to Cart");
         try {
-            CartScreen cart = new CartScreen();
+            CartScreen cart = new CartScreen(currentUser);
             System.out.println("CartScreen created successfully");
             cart.setVisible(true);
             System.out.println("CartScreen set visible");

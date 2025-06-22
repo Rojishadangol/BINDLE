@@ -35,10 +35,10 @@ public class CartScreen extends javax.swing.JFrame {
     /**
      * Creates new form CartScreen
      */
-    public CartScreen() {
+    public CartScreen(User currentUser) {
         initConnection();
-        User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder
-        this.model = new Cart(currentUser, connection);
+        User user = null;
+        this.model = new Cart(user);
         this.controller = new CartController(model, this);
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -319,7 +319,7 @@ public class CartScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CartScreen().setVisible(true);
+                new CartScreen(currentUser).setVisible(true);
             }
         });
     }

@@ -8,13 +8,13 @@ import bindle_project.Dao.UserDao;
 import javax.swing.JOptionPane;
 
 public class AuthModel {
-    public UserData register(String email, String password, String name) {
+   public UserData register(String email, String password, String name) {
         if (!isValidEmail(email)) {
             JOptionPane.showMessageDialog(null, "Invalid email format", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
         if (UserDao.register(email, password, name)) {
-            return new UserData(0, email, name, false); // ID 0 as placeholder
+            return new UserData(0, email, name, false); // ID 0 as placeholder, verified = false
         }
         return null;
     }

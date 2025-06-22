@@ -44,6 +44,20 @@ public class Listing extends javax.swing.JFrame {
 
         add(panel);
     }
+    private void addBookLabelListener(JLabel label, String bookTitle) {
+        label.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navigateToDescription(bookTitle);
+            }
+        });
+    }
+    private void navigateToDescription(String bookTitle) {
+        NavigationController navController = new NavigationController();
+        // Assuming NavigationController has a method to show description screen
+        navController.goToDescriptionScreen(bookTitle);
+    }
+    
 
    
     @SuppressWarnings("unchecked")
@@ -146,9 +160,19 @@ public class Listing extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 0, 51));
         jButton3.setText("Add to Cart");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 0, 51));
         jButton4.setText("Add to Cart");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(255, 0, 51));
         jButton5.setText("Add to Cart");
@@ -194,7 +218,7 @@ public class Listing extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel34.setText("Rs. 500");
 
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle/view/book8.png"))); // NOI18N
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/book8.png"))); // NOI18N
         jLabel32.setText("\n");
 
         jLabel35.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -256,7 +280,7 @@ public class Listing extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/book2.png"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/book3 (2).png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/book3.png"))); // NOI18N
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/book5.png"))); // NOI18N
 
@@ -597,7 +621,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {
     navController.goToCartScreen();
 }
 
-    
+
     public static void main(String args[]) {
         
 

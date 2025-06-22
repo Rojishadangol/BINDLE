@@ -21,24 +21,13 @@ public class UserDao {
     private static final String PASSWORD = "roji@123";
 
     public static boolean register(String email, String password, String name) {
-        String token = UUID.randomUUID().toString(); // Generate unique token
-        String sql = "INSERT INTO users (email, password, name, verified, verification_token) VALUES (?, ?, ?, false, ?)";
+        String sql = "INSERT INTO users (email, password, name, verified) VALUES (?, ?, ?, false)";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, email.trim());
             pstmt.setString(2, password.trim());
             pstmt.setString(3, name.trim());
-            pstmt.setString(4, token);
             int rowsAffected = pstmt.executeUpdate();
-            if (rowsAffected > 0) {
-                String subject = "Verify Your Email for Bindle";
-                String body = "Please verify your email by clicking the following link:\nhttp://localhost:8080/Bindle/verify?token=" + token;
-                if (!SMTPSMailSender.sendMail(email, subject, body)) {
-                    JOptionPane.showMessageDialog(null, "Error sending verification email", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    System.out.println("Verification email sent successfully to " + email);
-                }
-            }
             return rowsAffected > 0;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error during registration: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
