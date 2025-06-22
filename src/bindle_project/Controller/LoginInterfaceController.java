@@ -6,7 +6,7 @@
 package bindle_project.Controller;
 
 import bindle_project.View.LoginInterfacee;
-import bindle_project.View.EditProfile;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
