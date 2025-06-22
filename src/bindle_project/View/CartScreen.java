@@ -378,7 +378,50 @@ private void navigateToHome() {
         search.setVisible(true);
         this.setVisible(false);
     }
+private void refreshCartDisplay() {
+        cartItemsPanel.removeAll();
+        int yOffset = 0;
+        for (Book book : model.getBooks()) {
+            addBookToPanel(book, yOffset);
+            yOffset += 200; // Adjust spacing for each book
+        }
+        cartItemsPanel.revalidate();
+        cartItemsPanel.repaint();
+    }
 
+    private void addBookToPanel(Book book, int yOffset) {
+        JLabel bookLabel = new JLabel(new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/" + book.getTitle().replace(" ", "") + ".png")));
+        JLabel titleLabel = new JLabel(book.getTitle(), JLabel.LEFT);
+        titleLabel.setFont(new java.awt.Font("Times New Roman", 1, 18));
+        JLabel authorLabel = new JLabel("By " + book.getAuthor(), JLabel.LEFT);
+        authorLabel.setFont(new java.awt.Font("Times New Roman", 0, 14));
+        JLabel priceLabel = new JLabel("NPR. " + book.getPrice(), JLabel.LEFT);
+        priceLabel.setFont(new java.awt.Font("Times New Roman", 1, 14));
+        JLabel deleteLabel = new JLabel("Remove", new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Thrashcan.png")), JLabel.LEFT);
+        deleteLabel.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        JLabel wishlistLabel = new JLabel("Wishlist", new javax.swing.ImageIcon(getClass().getResource("/Bindle_Images/Bookmark.png")), JLabel.LEFT);
+        wishlistLabel.setFont(new java.awt.Font("Times New Roman", 0, 14));
+
+        deleteLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                removeItem(book.getId());
+            }
+        });
+        wishlistLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                moveToWishlist(book.getId());
+            }
+        });
+
+        cartItemsPanel.add(bookLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, yOffset, 130, 190));
+        cartItemsPanel.add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, yOffset + 20, 130, 30));
+        cartItemsPanel.add(authorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, yOffset + 50, 100, 20));
+        cartItemsPanel.add(priceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, yOffset + 30, 70, 20));
+        cartItemsPanel.add(deleteLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, yOffset + 170, 90, 20));
+        cartItemsPanel.add(wishlistLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, yOffset + 170, 100, 20));
+    }
     private void removeItem(int itemId) {
         // Map itemId to book (simplified - adjust based on your data model)
         Book book = getBookById(itemId);

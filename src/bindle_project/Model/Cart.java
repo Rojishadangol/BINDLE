@@ -15,7 +15,12 @@ public class Cart {
     public User getUser() {
         return user;
     }
-
+public boolean addBook(Book book) {
+        if (book != null && !books.contains(book)) {
+            return books.add(book);
+        }
+        return false;
+    }
     public boolean removeBookFromCart(Book book) {
         if (book == null) return false;
         return bookIds.remove(Integer.valueOf(book.getId()));
@@ -27,5 +32,13 @@ public class Cart {
 
     public void addBook(int bookId) {
         bookIds.add(bookId);
+    }
+
+    public Object getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Iterable<Book> getBooks() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

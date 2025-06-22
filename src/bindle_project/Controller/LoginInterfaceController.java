@@ -5,7 +5,9 @@
 // LoginController.java
 package bindle_project.Controller;
 
+import bindle_project.View.DeactivateAccountUI;
 import bindle_project.View.LoginInterfacee;
+import bindle_project.View.UpdatePassword;
 
 
 import java.awt.event.ActionEvent;
@@ -55,5 +57,33 @@ public void actionPerformed(ActionEvent e) {
     JOptionPane.showMessageDialog(null, "Profile updated successfully!");
 }
     }
+//    Cancel button functionality
+    class CancelButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            LoginInterface.dispose();
+        }
+    }
+
+
+    class ChangePasswordListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Change Password button clicked");
+            LoginInterface.dispose(); // Close current window
+            new UpdatePassword().setVisible(true); // Open Change Password screen
+        }
+    }
+
+    // Deactivate button functionality
+    class DeactivateListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Deactivate button clicked");
+            LoginInterface.dispose(); // Close current window
+            new DeactivateAccountUI().setVisible(true); // Open Deactivate screen
+        }
+    }
 }
+
 
