@@ -29,7 +29,7 @@ public class ListingController {
     }
 
     private void openCartScreen() {
-        CartScreen cartScreen = new CartScreen();
+        CartScreen cartScreen = new CartScreen(currentUser);
         cartScreen.setVisible(true);
     }
 }

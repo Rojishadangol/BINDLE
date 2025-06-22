@@ -328,19 +328,20 @@ public void updateCartDisplay(int itemCount) {
             return null;
         }
     }
-    private void navigateToCart() {
-        System.out.println("Attempting to navigate to Cart");
-        try {
-            CartScreen cart = new CartScreen();
-            System.out.println("CartScreen created successfully");
-            cart.setVisible(true);
-            System.out.println("CartScreen set visible");
-            this.setVisible(false);
-        } catch (Exception e) {
-            System.out.println("Error navigating to Cart: " + e.getMessage());
-            e.printStackTrace();
-        }
+   private void navigateToCart() {
+    System.out.println("Attempting to navigate to Cart");
+    try {
+        User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder
+        CartScreen cart = new CartScreen(currentUser); // Pass user
+        System.out.println("CartScreen created successfully");
+        cart.setVisible(true);
+        System.out.println("CartScreen set visible");
+        this.setVisible(false);
+    } catch (Exception e) {
+        System.out.println("Error navigating to Cart: " + e.getMessage());
+        e.printStackTrace();
     }
+}
     private void navigateToLogin() {
         System.out.println("Attempting to navigate to Login");
         try {
