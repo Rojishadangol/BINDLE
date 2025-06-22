@@ -42,6 +42,10 @@ public class RegisterView extends javax.swing.JFrame {
         show1 = new javax.swing.JButton();
         show2 = new javax.swing.JButton();
         AlreadyHaveAnAccount = new javax.swing.JLabel();
+        sendOtp = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        OtpTextfield = new javax.swing.JTextField();
+        verify = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,7 +55,7 @@ public class RegisterView extends javax.swing.JFrame {
         RegisterButton.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         RegisterButton.setForeground(new java.awt.Color(255, 255, 255));
         RegisterButton.setText("Register");
-        getContentPane().add(RegisterButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, 170, 30));
+        getContentPane().add(RegisterButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 500, 170, 30));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/Logo.png"))); // NOI18N
         logo.setText("jLabel7");
@@ -59,7 +63,7 @@ public class RegisterView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel1.setText("Create an account");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 300, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 300, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Name");
@@ -103,14 +107,25 @@ public class RegisterView extends javax.swing.JFrame {
         getContentPane().add(show1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 340, -1, -1));
 
         show2.setText("Show");
-        getContentPane().add(show2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 420, -1, -1));
+        getContentPane().add(show2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 400, -1, -1));
 
         AlreadyHaveAnAccount.setText("Already Have an Account?");
-        getContentPane().add(AlreadyHaveAnAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, -1, -1));
+        getContentPane().add(AlreadyHaveAnAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 540, -1, -1));
+
+        sendOtp.setText("Send OTP");
+        getContentPane().add(sendOtp, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Enter OTP");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
+        getContentPane().add(OtpTextfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 230, -1));
+
+        verify.setText("Verify");
+        getContentPane().add(verify, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 460, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/background.png"))); // NOI18N
         background.setText("jLabel6");
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 700, 590));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 700, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -167,6 +182,7 @@ public class RegisterView extends javax.swing.JFrame {
     private javax.swing.JPasswordField ConfirmPassword;
     private javax.swing.JTextField Email;
     private javax.swing.JTextField Name;
+    private javax.swing.JTextField OtpTextfield;
     private javax.swing.JButton RegisterButton;
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
@@ -174,10 +190,13 @@ public class RegisterView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel logo;
     private javax.swing.JPasswordField password;
+    private javax.swing.JButton sendOtp;
     private javax.swing.JButton show1;
     private javax.swing.JButton show2;
+    private javax.swing.JButton verify;
     // End of variables declaration//GEN-END:variables
 
 public javax.swing.JTextField getNameTextField(){
@@ -212,4 +231,27 @@ public void showPasswordButtonListener1(ActionListener listener){
 show2.addActionListener(listener);}
 public void tooglePasswordField1(boolean visible){
 ConfirmPassword.setEchoChar(visible ? (char) 0:'*');
-show2.setText(visible ? "Hide":"Show");}}
+show2.setText(visible ? "Hide":"Show");}
+public javax.swing.JTextField getOtpField() {
+        return OtpTextfield;
+    }
+
+    public javax.swing.JButton getVerifyButton() {
+        return verify;
+    }
+
+    public void setOtpFieldVisible(boolean visible) {
+        OtpTextfield.setVisible(visible);
+    }
+
+    public void setVerifyButtonVisible(boolean visible) {
+        verify.setVisible(visible);
+    }
+    public javax.swing.JButton getSendOtpButton() {
+        return sendOtp;
+    }
+
+    public void setSendOtpButtonVisible(boolean visible) {
+        sendOtp.setVisible(visible);
+    }
+}

@@ -4,80 +4,68 @@
  */
 package bindle_project.Model;
 
-/**
- *
- * @author acer
- */
-import java.util.*;
-import java.io.*;
-
-// Assuming Book class has equals and hashCode properly overridden
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WishlistModel {
-    private User currentUser;
+    private User user;
     private Connection connection;
 
-    public WishlistModel(User currentUser, Connection connection) {
-        this.currentUser = currentUser;
+    public WishlistModel(User user, Connection connection) {
+        this.user = user;
         this.connection = connection;
     }
 
-    // Add book to wishlist
-    public boolean addBook(Book book) {
-        String sql = "INSERT IGNORE INTO wishlists (user_id, book_id) VALUES (?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, currentUser.getId());
-            ps.setInt(2, book.getId());
-            int affected = ps.executeUpdate();
-            return affected > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    // Remove book from wishlist
-    public boolean removeBook(Book book) {
-        String sql = "DELETE FROM wishlists WHERE user_id = ? AND book_id = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, currentUser.getId());
-            ps.setInt(2, book.getId());
-            int affected = ps.executeUpdate();
-            return affected > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    // Get all wishlist books for user
     public List<Book> getWishlistBooks() {
-        List<Book> wishlist = new ArrayList<>();
-        String sql = "SELECT b.* FROM books b JOIN wishlists w ON b.id = w.book_id WHERE w.user_id = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, currentUser.getId());
-            ResultSet rs = ps.executeQuery();
+        List<Book> books = new ArrayList<>();
+        try {
+            String sql = "SELECT b.id, b.title, b.author, b.price, b.condition, b.seller_id, b.status " +
+                         "FROM wishlists w JOIN books b ON w.book_id = b.id WHERE w.user_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Book book = mapResultSetToBook(rs);
-                wishlist.add(book);
+                Book book = new Book(
+                    rs.getInt("id"),
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    rs.getString("condition"),
+                    rs.getString("status")
+                );
+                books.add(book);
             }
+            rs.close();
+            stmt.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error fetching wishlist books: " + e.getMessage());
         }
-        return wishlist;
+        return books;
     }
 
-    private Book mapResultSetToBook(ResultSet rs) throws SQLException {
-        // Map result set columns to Book object properties
-        int id = rs.getInt("id");
-        String title = rs.getString("title");
-        String author = rs.getString("author");
-        String description = rs.getString("description");
-        String thumbnail = rs.getString("thumbnail");
-        // Create and return Book object (adjust constructor accordingly)
-        return new Book(id, title, author, description, thumbnail);
+    public boolean removeBookFromWishlist(Book book) {
+        try {
+            String sql = "DELETE FROM wishlists WHERE user_id = ? AND book_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            stmt.setInt(2, book.getId());
+            int rowsAffected = stmt.executeUpdate();
+            stmt.close();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.out.println("Error removing book from wishlist: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean removeBook(Book selected) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void addBook(Book book) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
-
-

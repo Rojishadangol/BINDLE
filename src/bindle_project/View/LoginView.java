@@ -145,6 +145,9 @@ public javax.swing.JLabel getForgotPassword(){
 
 public void forgotPassword(MouseListener listener){
     forgotPassword.addMouseListener(listener);}
+public void login(MouseListener listener){
+    login.addMouseListener(listener);}
+
 
 public void showPasswordButtonListener(ActionListener listener){
 show.addActionListener(listener);}

@@ -3,6 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package bindle_project.View;
+
+import bindle_project.Model.User;
+import bindle_project.Model.WishlistModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ushadhakal
@@ -14,6 +26,35 @@ public class search extends javax.swing.JFrame {
      */
     public search() {
         initComponents();
+        setSize(800, 600); // Set desired window size
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                navigateToHome();
+            }
+        });
+
+        // Wishlist button navigation (from heartButton)
+        HeartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                navigateToWishlist();
+            }
+        });
+
+        // Search navigation
+//        searchTextField.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                navigateToSearch();
+//            }
+//        });
+        CartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                navigateToCart();
+            }
+        });
     }
 
     /**
@@ -28,23 +69,23 @@ public class search extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-
         jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-
+        CartButton = new javax.swing.JButton();
+        HeartButton = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jLabel7.setText("jLabel7");
 
@@ -63,44 +104,13 @@ public class search extends javax.swing.JFrame {
             .addGap(0, 340, Short.MAX_VALUE)
         );
 
-        jLabel12.setText("jLabel12");
+        jLabel14.setText("jLabel12");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        jLabel1.setText("BOOKS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 215, 54));
-
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton1.setText("SHOP NOW");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        jLabel2.setText("FOR");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        jLabel3.setText("ALL");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 8)); // NOI18N
-        jLabel4.setText("FICTION, NON-FICTION, TAROT/ORACLE CARDS, MAPS,");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, 23));
-
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 8)); // NOI18N
-        jLabel5.setText("GUIDES,JOURNAL,AND MANY MORE");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 111, -1, -1));
-
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 257, -1));
-
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 257, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,46 +126,121 @@ public class search extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(539, 477, -1, -1));
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(917, 6, -1, -1));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/books.jpg"))); // NOI18N
-        jLabel9.setText("jLabel9");
-
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 260, 210));
-
-
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 260, 210));
-
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 5)); // NOI18N
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/Logo.png"))); // NOI18N
-
         jLabel11.setText("jLabel11");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 250, 40));
 
-        jLabel12.setText("jLabel12");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, -1, -1));
-
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mylist.png"))); // NOI18N
-        jLabel13.setText("jLabel13");
+        CartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/CART.png"))); // NOI18N
+
+        HeartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mylist.png"))); // NOI18N
+
+        homeButton.setText("Home");
+
+        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton1.setText("SHOP NOW");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 8)); // NOI18N
+        jLabel4.setText("FICTION, NON-FICTION, TAROT/ORACLE CARDS, MAPS,");
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 8)); // NOI18N
+        jLabel5.setText("GUIDES,JOURNAL,AND MANY MORE");
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/books.jpg"))); // NOI18N
+        jLabel9.setText("jLabel9");
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel3.setText("ALL");
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel2.setText("FOR");
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel1.setText("BOOKS");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(77, 77, 77))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                        .addGap(149, 149, 149)
+                                        .addComponent(jLabel2))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)))
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(380, Short.MAX_VALUE)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(114, 114, 114))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(homeButton)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(HeartButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(CartButton)))
+                .addGap(27, 27, 27))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(298, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(HeartButton)
+                    .addComponent(CartButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(homeButton)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(87, 87, 87))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(40, 40, 40)))))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jButton1))
+                        .addGap(64, 64, 64))))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 340));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -200,14 +285,14 @@ public class search extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CartButton;
+    private javax.swing.JButton HeartButton;
+    private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-
-    private javax.swing.JLabel jLabel13;
-
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -221,5 +306,68 @@ public class search extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+private void navigateToHome() {
+        this.dispose();
+        new HomeScreen().setVisible(true);
+        
+    }
+
+     private void navigateToWishlist() {
+        System.out.println("Attempting to navigate to Wishlist");
+        try {
+            Connection connection = getDbConnection();
+            if (connection != null) {
+                // Use a valid User constructor with placeholder values
+                User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder User
+                WishlistModel model = new WishlistModel(currentUser, connection);
+                WishlistScreen wishlist = new WishlistScreen(model);
+                System.out.println("WishlistScreen created successfully");
+                wishlist.setVisible(true);
+                System.out.println("WishlistScreen set visible");
+                this.setVisible(false);
+            } else {
+                System.out.println("Database connection failed, cannot navigate to Wishlist");
+            }
+        } catch (Exception e) {
+            System.out.println("Error navigating to Wishlist: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+     private Connection getDbConnection() {
+        System.out.println("Attempting to connect to database...");
+        try {
+            String url = "jdbc:mysql://localhost:3306/JavaProjectBindle"; // Ensure this matches your setup
+            String user = "root"; // Default MySQL username, adjust if changed
+            String password = "roji@123"; // Default password might be empty, adjust if set
+            System.out.println("Using URL: " + url + ", User: " + user);
+            Connection conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Database connection established successfully");
+            return conn;
+        } catch (SQLException e) {
+            System.out.println("Failed to connect to database: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    private void navigateToSearch() {
+        BookGridScreen search = new BookGridScreen();
+        search.setVisible(true);
+        this.setVisible(false);
+    }
+    private void navigateToCart() {
+        System.out.println("Attempting to navigate to Cart");
+        try {
+            CartScreen cart = new CartScreen();
+            System.out.println("CartScreen created successfully");
+            cart.setVisible(true);
+            System.out.println("CartScreen set visible");
+            this.setVisible(false);
+        } catch (Exception e) {
+            System.out.println("Error navigating to Cart: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }
 

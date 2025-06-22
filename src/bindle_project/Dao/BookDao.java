@@ -29,9 +29,7 @@ public class BookDao {
                     rs.getInt("id"),
                     rs.getString("title"),
                     rs.getString("author"),
-                    rs.getDouble("price"),
                     rs.getString("condition"),
-                    rs.getInt("seller_id"),
                     rs.getString("status")
                 );
                 books.add(book);
@@ -78,4 +76,27 @@ public class BookDao {
             return false;
         }
     }
+    public List<Book> getAllAvailableBooks() {
+    List<Book> books = new ArrayList<>();
+    String sql = "SELECT * FROM books WHERE status = 'available'";
+    try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+         PreparedStatement pstmt = conn.prepareStatement(sql);
+         ResultSet rs = pstmt.executeQuery()) {
+
+        while (rs.next()) {
+            Book book = new Book(
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getString("author"),
+                rs.getString("condition"),
+                rs.getString("status")
+            );
+            books.add(book);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error fetching books: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    return books;
+}
+
 }

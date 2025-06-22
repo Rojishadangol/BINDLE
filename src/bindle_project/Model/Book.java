@@ -20,7 +20,7 @@ public class Book {
     private String status;
     private String description;
 
-    public Book(int id, String title, String author, double price, String condition, int sellerId, String status) {
+    public Book(int id, String title, String author, String condition, String status) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -40,6 +40,11 @@ public class Book {
     public int getSellerId() { return sellerId; }
     public String getStatus() { return status; }
     public String getDescription() { return description; }
+
+    // Setter for description (optional, if needed)
+    public void setDescription(String description) {
+        this.description = description != null ? description : "No description available";
+    }
 
     @Override
     public String toString() {

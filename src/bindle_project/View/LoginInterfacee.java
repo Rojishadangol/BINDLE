@@ -276,5 +276,20 @@ public javax.swing.JTextField getPhoneField() {
 public javax.swing.JTextField getAddressField() {
     return address;
 }
-
+//private Connection getDbConnection() {
+//        System.out.println("Attempting to connect to database...");
+//        Connection conn = null;
+//        try {
+//            String url = "jdbc:mysql://localhost:3306/JavaProjectBindle";
+//            String user = "root";
+//            String password = "roji@123";
+//            System.out.println("Using URL: " + url + ", User: " + user);
+//            conn = DriverManager.getConnection(url, user, password);
+//            System.out.println("Database connection established successfully");
+//        } catch (SQLException e) {
+//            System.out.println("Failed to connect to database: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//        return conn;
+//    }
 }
