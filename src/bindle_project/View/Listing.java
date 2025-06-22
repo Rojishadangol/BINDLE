@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import bindle_project.Controller.NavigationController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 
@@ -24,14 +26,21 @@ public class Listing extends javax.swing.JFrame {
     
     public Listing() {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setTitle("Book Listing");
+        setSize(500, 400);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
         panel.add(new JLabel("Listing functionality not fully implemented."));
-        JButton closeButton = new JButton("Close");
-        closeButton.addActionListener(e -> dispose());
-        panel.add(closeButton);
+        JButton addToCartButton = new JButton("Add to Cart");
+        addToCartButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                NavigationController navController = new NavigationController();
+                navController.goToCartScreen();
+        }
+        });
+        panel.add(addToCartButton);
 
         add(panel);
     }
