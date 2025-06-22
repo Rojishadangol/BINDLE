@@ -6,12 +6,12 @@ import bindle_project.Model.BookModel;
 import bindle_project.View.HomeScreen;
 import javax.swing.JOptionPane;
 
-public class ListController {
+public class Listcontroller {
     private HomeScreen view;
     private BookModel bookModel;
     private int userId;
 
-    public ListController(HomeScreen view, int userId) {
+    public Listcontroller(HomeScreen view, int userId) {
         this.view = view;
         this.bookModel = new BookModel();
         this.userId = userId;
