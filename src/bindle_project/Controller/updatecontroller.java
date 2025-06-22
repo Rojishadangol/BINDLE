@@ -18,28 +18,49 @@ import java.awt.event.ActionListener;
  */
 public class updatecontroller {
    
-       private boolean isPasswordVisible =false;
-       private final UpdatePassword updateView;
-       public updatecontroller(UpdatePassword updateView){
-       this.updateView= updateView;
-       updateView.showpasswordButtonListener(new ShowPasswordListener());
-       updateView.showpasswordButtonListener1(new ShowPasswordListener());
-       updateView.showpasswordButtonListener2(new ShowPasswordListener());
+    
+    private boolean isPasswordVisible1 = false;
+    private boolean isPasswordVisible2 = false;
+    private boolean isPasswordVisible3 = false;
 
+    private final UpdatePassword updateView;
 
-       }
-       class ShowPasswordListener implements ActionListener{
+    public updatecontroller(UpdatePassword updateView){
+        this.updateView = updateView;
 
+        updateView.showpasswordButtonListener1(new ShowPasswordListener1());
+        updateView.showpasswordButtonListener2(new ShowPasswordListener2());
+        updateView.showpasswordButtonListener3(new ShowPasswordListener3());
+    }
+
+    class ShowPasswordListener1 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            isPasswordVisible= !isPasswordVisible;
-            updateView.tooglePaawordField1(isPasswordVisible);
-                        updateView.tooglePaawordField2(isPasswordVisible);
-                                    updateView.tooglePaawordField3(isPasswordVisible);
+            isPasswordVisible1 = !isPasswordVisible1;
+            updateView.tooglePaawordField1(isPasswordVisible1);
         }
-       }
+    }
+
+    class ShowPasswordListener2 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isPasswordVisible2 = !isPasswordVisible2;
+            updateView.tooglePaawordField2(isPasswordVisible2);
+        }
+    }
+
+    class ShowPasswordListener3 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            isPasswordVisible3 = !isPasswordVisible3;
+            updateView.tooglePaawordField3(isPasswordVisible3);
+        }
+    }
 }
-        
+
+
+
+
 
 
        
