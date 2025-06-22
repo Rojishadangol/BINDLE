@@ -123,6 +123,7 @@ public class LoginInterfacee extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 0, 12)); // NOI18N
         jLabel2.setText("Name");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 203, -1, 28));
 
         jLabel3.setText("Email");
 

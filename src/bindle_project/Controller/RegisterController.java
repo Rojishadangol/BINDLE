@@ -49,8 +49,8 @@ public class RegisterController {
     public void navigateToLogin() {
         close();
         LoginView loginView = new LoginView();
-        LoginController login = new LoginController(loginView, authModel);
-        login.open();
+//        LoginController login = new LoginController(loginView, authModel);
+//        login.open();
     }
 
     private class RegisterUser implements ActionListener {
@@ -139,7 +139,9 @@ public class RegisterController {
         @Override
         public void actionPerformed(ActionEvent e) {
             isPasswordVisible = !isPasswordVisible;
+
             view.tooglePasswordField1(isPasswordVisible);
+
         }
     }
 

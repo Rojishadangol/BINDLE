@@ -4,7 +4,7 @@
  */
 package bindle_project.View;
 
-import bindle_project.Model.Book;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
