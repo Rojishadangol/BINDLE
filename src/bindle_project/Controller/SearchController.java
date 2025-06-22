@@ -25,12 +25,9 @@ public class SearchController {
 
     public void performSearch(String keyword) {
         Search search = new Search(keyword);
-<<<<<<< HEAD
-        List<Book> books = booksModel.searchBooks(query);
-        view.displaySearchResults(results); // Assume HomeScreen has this method
-=======
-        List<Book> results = searchDao.searchBooks(search.getKeyword());
-        view.displaySearchResults(results); // Ensure this method exists
->>>>>>> d50d14ddd9424d27e76262f2f48e91457c1d9cc3
+//        List<Book> books = booksModel.searchBooks(query);
+//        view.displaySearchResults(results); // Assume HomeScreen has this method
+//        List<Book> results = searchDao.searchBooks(search.getKeyword());
+//        view.displaySearchResults(results); // Ensure this method exists
     }
 }

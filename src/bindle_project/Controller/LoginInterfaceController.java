@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nfs://netbeans/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nfs://netbeans/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 // LoginController.java
 package bindle_project.Controller;
@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import bindle_project.View.UpdatePassword; 
+import bindle_project.View.DeactivateAccountUI;   
 
 public class LoginInterfaceController {
     private LoginInterfacee LoginInterface;
@@ -21,7 +23,9 @@ public class LoginInterfaceController {
         // Attach button listeners
         this.LoginInterface.getSaveButton().addActionListener(new LoginButtonListener());
         this.LoginInterface.getCancelButton().addActionListener(new CancelButtonListener());
-        this.LoginInterface.uploadImageButtonListener(new UploadImageListener()); // <-- Change picture button
+       // <-- Change picture button
+        this.LoginInterface.ChangePasswordListener(new ChangePasswordListener()); // <-- Change Password button
+        this.LoginInterface.deactivateButtonListener(new DeactivateListener()); // <-- Deactivate button
     }
 
     // Save button functionality
@@ -63,26 +67,23 @@ public class LoginInterfaceController {
         }
     }
 
-    // Change Picture button functionality
-    class UploadImageListener implements ActionListener {
+
+    class ChangePasswordListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            JFileChooser fileChooser = new JFileChooser();
-            int result = fileChooser.showOpenDialog(LoginInterface);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File file = fileChooser.getSelectedFile();
-                if (file.exists() && file.isFile()) {
-                    LoginInterface.setSelectedFile(file);
+            System.out.println("Change Password button clicked");
+            LoginInterface.dispose(); // Close current window
+            new UpdatePassword().setVisible(true); // Open Change Password screen
+        }
+    }
 
-                    // OPTIONAL: Show image in jLabel6 or jLabel8
-                    // ImageIcon icon = new ImageIcon(file.getAbsolutePath());
-                    // LoginInterface.getJLabel6().setIcon(icon); // Create a getter if needed
-                } else {
-                    JOptionPane.showMessageDialog(LoginInterface,
-                            "Invalid file selected.",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
+    // Deactivate button functionality
+    class DeactivateListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Deactivate button clicked");
+            LoginInterface.dispose(); // Close current window
+            new DeactivateAccountUI().setVisible(true); // Open Deactivate screen
         }
     }
 }

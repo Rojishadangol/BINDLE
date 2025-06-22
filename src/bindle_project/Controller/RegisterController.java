@@ -49,8 +49,8 @@ public class RegisterController {
     public void navigateToLogin() {
         close();
         LoginView loginView = new LoginView();
-        LoginController login = new LoginController(loginView, authModel);
-        login.open();
+//        LoginController login = new LoginController(loginView, authModel);
+//        login.open();
     }
 
     private class RegisterUser implements ActionListener {
