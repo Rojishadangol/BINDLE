@@ -38,7 +38,7 @@ public class CartScreen extends javax.swing.JFrame {
     public CartScreen() {
         initConnection();
         User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder
-        this.model = new Cart(currentUser, connection);
+        this.model = new Cart(currentUser);
         this.controller = new CartController(model, this);
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

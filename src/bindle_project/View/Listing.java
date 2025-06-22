@@ -598,7 +598,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {
     navController.goToCartScreen();
 }
 
-    
+
     public static void main(String args[]) {
         
 
