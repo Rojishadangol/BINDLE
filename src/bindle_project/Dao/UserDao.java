@@ -18,7 +18,7 @@ public class UserDao {
     private static final String USER = "root";
     private static final String PASSWORD = "roji@123"; // Update with your actual password
 
-    public static boolean register(String email, String password, String name) {
+    public  boolean register(String email, String password, String name) {
         String sql = "INSERT INTO users (email, password, name, verified) VALUES (?, ?, ?, false)";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -34,6 +34,7 @@ public class UserDao {
     }
 
     public static User login(LoginRequest loginRequest) {
+        
         String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

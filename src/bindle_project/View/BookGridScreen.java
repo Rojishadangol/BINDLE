@@ -5,7 +5,7 @@
 package bindle_project.View;
 
 import java.awt.BorderLayout;
-import java.awt.print.Book;
+import bindle_project.Model.Book;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;

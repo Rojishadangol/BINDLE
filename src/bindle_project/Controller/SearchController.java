@@ -8,6 +8,7 @@ import bindle_project.Dao.SearchDao;
 import bindle_project.Model.Search;
 import bindle_project.View.HomeScreen;
 import java.awt.print.Book;
+
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class SearchController {
 
     public void performSearch(String keyword) {
         Search search = new Search(keyword);
-        List<Book> results = searchDao.searchBooks(search.getKeyword());
+        List<Book> books = booksModel.searchBooks(query);
         view.displaySearchResults(results); // Assume HomeScreen has this method
     }
 }
