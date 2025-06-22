@@ -23,5 +23,9 @@ public class SearchController {
         Search search = new Search(keyword);
         List<Book> results = searchDao.searchBooks(search.getKeyword());
         view.displaySearchResults(results); // Ensure this method exists
+        
+    }
+    public List<String> getSuggestions(String partialKeyword) {
+        return searchDao.getSuggestions(partialKeyword);
     }
 }
