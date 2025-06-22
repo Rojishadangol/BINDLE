@@ -84,8 +84,6 @@ public class LoginController {
             
             if (user == null) {
                 JOptionPane.showMessageDialog(view, "Invalid email or password");
-            } else if (!user.isVerified()) {
-                JOptionPane.showMessageDialog(view, "Please verify your email first", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(view, "Login Successful");
                 close();
