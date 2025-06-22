@@ -106,4 +106,20 @@ public class UserDao {
             System.out.println("Connection failed: " + e.getMessage());
         }
     }
+    public static boolean userExists(String email) {
+    String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+    try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        pstmt.setString(1, email.trim().toLowerCase());
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error checking user existence: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    return false;
+}
+
 }
