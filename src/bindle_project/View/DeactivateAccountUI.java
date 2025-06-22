@@ -52,8 +52,8 @@ public class DeactivateAccountUI extends JFrame {
         cancelBtn = new JButton("Cancel");
         deactivateBtn = new JButton("Deactivate");
 
-        deactivateBtn.setBackground(Color.BLUE);
-        deactivateBtn.setForeground(Color.WHITE);
+        deactivateBtn.setBackground(Color.white);
+        deactivateBtn.setForeground(Color.blue);
 
         cancelBtn.addActionListener(e -> dispose());
         deactivateBtn.addActionListener(e -> showConfirmationDialog());
