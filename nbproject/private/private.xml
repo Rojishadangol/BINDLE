@@ -28,7 +28,7 @@
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/Bookcontroller.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/LoginInterfaceController.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/LoginController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/ListController.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/Listcontroller.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/search.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/RegisterController.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/.gitignore</file>
@@ -39,8 +39,6 @@
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/books.jpg</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/Cart.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/CartController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/Order.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/OrderHistory.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/OrderHistoryView.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/OrderHistoryController.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/Review.java</file>
@@ -55,7 +53,6 @@
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/LoginRequest.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/Search.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/UserData.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/BookCard/BookCard.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/HomeController.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/AuthModel.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/BookModel.java</file>
@@ -71,8 +68,8 @@
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/image/mylist.png</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/img/mylist.png</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/WishlistPanel.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Dao/SaveToDatabase.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Database/DatabaseUtils.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/Bindle_Images/HomeScreenBookshelf.png</file>
         </group>
     </open-files>
 </project-private>

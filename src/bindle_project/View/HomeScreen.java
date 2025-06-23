@@ -5,6 +5,7 @@
  */
 package bindle_project.View;
 
+import bindle_project.Controller.Listcontroller;
 import bindle_project.Model.User;
 import bindle_project.Model.WishlistModel;
 import java.awt.BorderLayout;
@@ -29,6 +30,7 @@ import javax.swing.JScrollPane;
  * @author ACER
  */
 public class HomeScreen extends javax.swing.JFrame {
+    private Listcontroller listController;
 public void updateCartDisplay(int itemCount) {
         // Update UI to reflect cart size (e.g., label or badge)
         System.out.println("Cart updated. Items: " + itemCount); // Placeholder, replace with actual UI update
@@ -38,6 +40,8 @@ public void updateCartDisplay(int itemCount) {
      */
     public HomeScreen() {
         initComponents(); // Ensure components are initialized first
+        User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder
+        this.listController = new Listcontroller(currentUser);
         System.out.println("HomeScreen initialized. Sell: " + (sell != null ? "not null" : "null") + ", Logout: " + (Logout != null ? "not null" : "null") + ", SearchButton: " + (SearchButton != null ? "not null" : "null"));
        SearchButton.addActionListener(new ActionListener() {
             @Override
@@ -400,10 +404,9 @@ public void updateCartDisplay(int itemCount) {
 //        }
 //    }
    private void navigateToListing() {
-        Listing listingScreen = new Listing();
-        listingScreen.setVisible(true);
-        // Optionally close HomeScreen
-        // dispose();
-    }
+    Listing listingScreen = new Listing();
+    listingScreen.setVisible(true);
+    this.dispose(); // Optional: close HomeScreen
+}
      
 }

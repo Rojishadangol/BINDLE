@@ -8,6 +8,10 @@ import bindle_project.Dao.SearchDao;
 import bindle_project.Model.Book; // Added import for Book class
 import bindle_project.Model.Search;
 import bindle_project.View.HomeScreen;
+
+
+
+
 import java.util.List;
 
 public class SearchController {
