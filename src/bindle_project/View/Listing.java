@@ -4,6 +4,7 @@
  */
 package bindle_project.View;
 
+import bindle_project.Controller.Listcontroller;
 import bindle_project.Dao.BookDao;
 import java.awt.print.Book;
 import java.util.List;
@@ -12,6 +13,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import bindle_project.Controller.NavigationController;
+import bindle_project.Model.User;
+import bindle_project.Model.WishlistModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 
 
@@ -24,17 +34,84 @@ public class Listing extends javax.swing.JFrame {
     
     public Listing() {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setTitle("Book Listing");
+        setSize(500, 400);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
         panel.add(new JLabel("Listing functionality not fully implemented."));
-        JButton closeButton = new JButton("Close");
-        closeButton.addActionListener(e -> dispose());
-        panel.add(closeButton);
+        JButton addToCartButton = new JButton("Add to Cart");
+        addToCartButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                NavigationController navController = new NavigationController();
+                navController.goToCartScreen();
+        }
+        });
+        panel.add(addToCartButton);
 
         add(panel);
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                navigateToHome();
+            }
+        });
+
+        // Wishlist button navigation (from heartButton)
+        heartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                navigateToWishlist();
+            }
+        });
+
+        // Search navigation
+//        searchTextField.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                navigateToSearch();
+//            }
+//        });
+        cartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                navigateToCart();
+            }
+        });
     }
+    
+   private void addBookLabelListener(JLabel label, String bookTitle) {
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                navigateToDescription(bookTitle);
+            }
+        });
+    }
+
+    private void navigateToDescription(String bookTitle) {
+    NavigationController navController = new NavigationController(this); // Pass the current Listing instance
+    navController.goToDescriptionScreen(bookTitle);
+}
+    private User getCurrentUser() {
+        // Placeholder: Retrieve from a session or controller
+        return new User(1, "user@example.com", "password123", "Test User", false); // Replace with actual user
+    }
+
+//    private Book getSelectedBook(String title) {
+//        // Placeholder: Create a Book object based on the title
+//        return new Book(1, title, getAuthorForTitle(title), "Used", "available", 500); // Price from jLabel25
+//    }
+
+    private String getAuthorForTitle(String title) {
+        switch (title) {
+            case "The Last Day of Socrates": return "Plato";
+            case "Metamorphosis": return "Franz Kafka";
+            case "Intermezzo": return "Sally Rooney";
+            // ... (add other cases as needed)
+            default: return "Unknown";
+        }}
 
    
     @SuppressWarnings("unchecked")
@@ -104,10 +181,11 @@ public class Listing extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        LblMyList = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        heartButton = new javax.swing.JButton();
+        cartButton = new javax.swing.JButton();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
+        homeButton = new javax.swing.JButton();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -137,19 +215,19 @@ public class Listing extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 0, 51));
         jButton3.setText("Add to Cart");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
+        // jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        //     public void mouseClicked(java.awt.event.MouseEvent evt) {
+        //         jButton3MouseClicked(evt);
+        //     }
+        // });
 
         jButton4.setBackground(new java.awt.Color(255, 0, 51));
         jButton4.setText("Add to Cart");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
-            }
-        });
+        // jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        //     public void mouseClicked(java.awt.event.MouseEvent evt) {
+        //         jButton4MouseClicked(evt);
+        //     }
+        // });
 
         jButton5.setBackground(new java.awt.Color(255, 0, 51));
         jButton5.setText("Add to Cart");
@@ -195,7 +273,7 @@ public class Listing extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel34.setText("Rs. 500");
 
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle/view/book8.png"))); // NOI18N
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle/image/book8.png"))); // NOI18N
         jLabel32.setText("\n");
 
         jLabel35.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -273,18 +351,20 @@ public class Listing extends javax.swing.JFrame {
 
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/book5.png"))); // NOI18N
 
-        LblMyList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mylist.png"))); // NOI18N
-        LblMyList.addActionListener(new java.awt.event.ActionListener() {
+        heartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mylist.png"))); // NOI18N
+        heartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LblMyListActionPerformed(evt);
+                heartButtonActionPerformed(evt);
             }
         });
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/CART.png"))); // NOI18N
+        cartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/CART.png"))); // NOI18N
 
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/newlogo.png"))); // NOI18N
 
         jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/book3.png"))); // NOI18N
+
+        homeButton.setText("Home");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -299,24 +379,30 @@ public class Listing extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(jLabel38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel5))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(heartButton)))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(cartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(LblMyList)))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(783, 783, 783)
+                        .addComponent(homeButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,8 +509,8 @@ public class Listing extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LblMyList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(heartButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cartButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -439,10 +525,12 @@ public class Listing extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 0, 0)
+                .addGap(9, 9, 9)
+                .addComponent(homeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -463,41 +551,38 @@ public class Listing extends javax.swing.JFrame {
                                     .addComponent(jLabel25))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel8)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel4)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel39)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel6)))
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel18))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel33)
-                                    .addComponent(jLabel30)
-                                    .addComponent(jLabel21))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel31)
-                                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel27))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel4)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel39)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel6)))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel27))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
@@ -590,26 +675,16 @@ public class Listing extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LblMyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LblMyListActionPerformed
+    private void heartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heartButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LblMyListActionPerformed
+    }//GEN-LAST:event_heartButtonActionPerformed
 private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {
-    NavigationController navController = new NavigationController();
-    navController.goToCartScreen();
+//   Listcontroller navController = new Listcontroller(getCurrentUser());
+//        Book selectedBook = getSelectedBook("The Last Day of Socrates"); // Match with jLabel13
+//        navController.goToCartScreen(selectedBook);
 }
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:CancelButton
-        
-    }//GEN-LAST:event_jButton3MouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4MouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
 
     public static void main(String args[]) {
         
@@ -623,10 +698,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton LblMyList;
+    private javax.swing.JButton cartButton;
+    public javax.swing.JButton heartButton;
+    private javax.swing.JButton homeButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -691,5 +767,64 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+private void navigateToHome() {
+        this.dispose();
+        new HomeScreen().setVisible(true);
+        
+    }
 
+     private void navigateToWishlist() {
+        System.out.println("Attempting to navigate to Wishlist");
+        try {
+            Connection connection = getDbConnection();
+            if (connection != null) {
+                // Use a valid User constructor with placeholder values
+                User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder User
+                WishlistModel model = new WishlistModel(currentUser, connection);
+                WishlistScreen wishlist = new WishlistScreen(model);
+                System.out.println("WishlistScreen created successfully");
+                wishlist.setVisible(true);
+                System.out.println("WishlistScreen set visible");
+                this.setVisible(false);
+            } else {
+                System.out.println("Database connection failed, cannot navigate to Wishlist");
+            }
+        } catch (Exception e) {
+            System.out.println("Error navigating to Wishlist: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+     private Connection getDbConnection() {
+        System.out.println("Attempting to connect to database...");
+        try {
+            String url = "jdbc:mysql://localhost:3306/JavaProjectBindle"; // Ensure this matches your setup
+            String user = "root"; // Default MySQL username, adjust if changed
+            String password = "roji@123"; // Default password might be empty, adjust if set
+            System.out.println("Using URL: " + url + ", User: " + user);
+            Connection conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Database connection established successfully");
+            return conn;
+        } catch (SQLException e) {
+            System.out.println("Failed to connect to database: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    
+    private void navigateToCart() {
+        System.out.println("Attempting to navigate to Cart");
+        try {
+            User currentUser = null;
+            CartScreen cart = new CartScreen(currentUser);
+            System.out.println("CartScreen created successfully");
+            cart.setVisible(true);
+            System.out.println("CartScreen set visible");
+            this.setVisible(false);
+        } catch (Exception e) {
+            System.out.println("Error navigating to Cart: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

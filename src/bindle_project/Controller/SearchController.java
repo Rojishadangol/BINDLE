@@ -8,6 +8,10 @@ import bindle_project.Dao.SearchDao;
 import bindle_project.Model.Book; // Added import for Book class
 import bindle_project.Model.Search;
 import bindle_project.View.HomeScreen;
+
+
+
+
 import java.util.List;
 
 public class SearchController {
@@ -23,5 +27,9 @@ public class SearchController {
         Search search = new Search(keyword);
         List<Book> results = searchDao.searchBooks(search.getKeyword());
         view.displaySearchResults(results); // Ensure this method exists
+        
+    }
+    public List<String> getSuggestions(String partialKeyword) {
+        return searchDao.getSuggestions(partialKeyword);
     }
 }

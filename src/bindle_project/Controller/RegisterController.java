@@ -49,49 +49,47 @@ public class RegisterController {
     public void navigateToLogin() {
         close();
         LoginView loginView = new LoginView();
-        LoginController login = new LoginController(loginView, authModel);
-        login.open();
+//        LoginController login = new LoginController(loginView, authModel);
+//        login.open();
     }
 
     private class RegisterUser implements ActionListener {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String name = view.getNameTextField().getText().trim();
-        String email = view.getEmailTextField().getText().trim();
-        String password = new String(view.getPasswordField().getPassword());
-        String confirmPassword = new String(view.getConfirmPassword().getPassword());
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String name = view.getNameTextField().getText().trim();
+            String email = view.getEmailTextField().getText().trim();
+            String password = new String(view.getPasswordField().getPassword());
+            String confirmPassword = new String(view.getConfirmPassword().getPassword());
 
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            JOptionPane.showMessageDialog(view, "Fill in all fields");
-            return;
-        }
-        if (!password.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(view, "Passwords do not match");
-            return;
-        }
-        if (generatedOtp == null || !isOtpVerified()) {
-            JOptionPane.showMessageDialog(view, "Please send and verify OTP first.");
-            return;
-        }
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                JOptionPane.showMessageDialog(view, "Fill in all fields");
+                return;
+            }
+            if (!password.equals(confirmPassword)) {
+                JOptionPane.showMessageDialog(view, "Passwords do not match");
+                return;
+            }
+            if (generatedOtp == null || !isOtpVerified()) {
+                JOptionPane.showMessageDialog(view, "Please send and verify OTP first.");
+                return;
+            }
 
-        UserData userData = authModel.register(email, password, name);
-        if (userData != null) {
-            JOptionPane.showMessageDialog(view, "Registered Successfully");
-            view.setOtpFieldVisible(false);
-            view.setVerifyButtonVisible(false);
-            view.setSendOtpButtonVisible(false);
-            navigateToLogin();
-        } else {
-            JOptionPane.showMessageDialog(view, "Failed to Register or invalid email", "Error", JOptionPane.ERROR_MESSAGE);
+            UserData userData = authModel.register(email, password, name);
+            if (userData != null) {
+                JOptionPane.showMessageDialog(view, "Registered Successfully");
+                view.setOtpFieldVisible(false);
+                view.setVerifyButtonVisible(false);
+                view.setSendOtpButtonVisible(false);
+                navigateToLogin();
+            } else {
+                JOptionPane.showMessageDialog(view, "Failed to Register or invalid email", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-    }
-}
 
         private boolean isOtpVerified() {
-            // Assume OTP is verified if the field is visible and not empty after verification
             return view.getOtpField().isVisible() && !view.getOtpField().getText().trim().isEmpty();
         }
-    
+    }
 
     private class SendOtpListener implements ActionListener {
         @Override
@@ -107,7 +105,7 @@ public class RegisterController {
             if (SMTPSMailSender.sendMail(email, subject, body)) {
                 view.setOtpFieldVisible(true);
                 view.setVerifyButtonVisible(true);
-                view.setSendOtpButtonVisible(false); // Hide after sending
+                view.setSendOtpButtonVisible(false);
                 view.getVerifyButton().addActionListener(new VerifyOtpListener());
                 JOptionPane.showMessageDialog(view, "An OTP has been sent to " + email + ". Please verify.");
             } else {
@@ -122,7 +120,7 @@ public class RegisterController {
             String enteredOtp = view.getOtpField().getText().trim();
             if (generatedOtp != null && generatedOtp.equals(enteredOtp)) {
                 JOptionPane.showMessageDialog(view, "OTP verified successfully!");
-                view.getRegisterButton().setEnabled(true); // Enable Register after verification
+                view.getRegisterButton().setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(view, "Invalid OTP. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -141,7 +139,9 @@ public class RegisterController {
         @Override
         public void actionPerformed(ActionEvent e) {
             isPasswordVisible = !isPasswordVisible;
+
             view.tooglePasswordField1(isPasswordVisible);
+
         }
     }
 

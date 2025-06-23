@@ -19,6 +19,12 @@ public class UpdatePassword extends javax.swing.JFrame {
      */
     public UpdatePassword() {
         initComponents();
+        cancel.addActionListener(e -> {
+            // Navigate back to LoginInterfacee
+            LoginInterfacee loginInterface = new LoginInterfacee();
+            loginInterface.setVisible(true);
+            dispose(); // Close the current DeactivateAccountUI
+        });
     }
 
     /**
@@ -46,6 +52,7 @@ public class UpdatePassword extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        cancel = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.add(jLabel5);
@@ -98,6 +105,17 @@ public class UpdatePassword extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cancel.setText("Cancel");
+        cancel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
+
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 380));
 
         pack();
@@ -121,6 +139,10 @@ public class UpdatePassword extends javax.swing.JFrame {
     private void Show2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Show2ActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,6 +186,7 @@ public class UpdatePassword extends javax.swing.JFrame {
     private javax.swing.JButton Show1;
     private javax.swing.JButton Show2;
     private javax.swing.JButton Show3;
+    private javax.swing.JButton cancel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
