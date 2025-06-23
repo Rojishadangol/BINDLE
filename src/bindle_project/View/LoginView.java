@@ -5,6 +5,8 @@
 package bindle_project.View;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
@@ -20,6 +22,13 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView() {
         initComponents();
                 setVisible(true);
+//                login.addActionListener(e -> System.out.println("Test: Login button works"));
+//    forgotPassword.addMouseListener(new MouseAdapter() {
+//        @Override
+//        public void mouseClicked(MouseEvent e) {
+//            System.out.println("Test: Forgot Password works");
+//        }
+//    });
 
         
     }
@@ -126,31 +135,44 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JPasswordField password;
     private javax.swing.JButton show;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JPasswordField getPasswordField(){
-return password;
-}
-public javax.swing.JTextField getEmail(){
-return email;
-}
+public javax.swing.JPasswordField getPasswordField() {
+        return password;
+    }
 
-public void loginUser(ActionListener listener){
-    login.addActionListener(listener);
-}
+    public javax.swing.JTextField getEmail() {
+        return email;
+    }
 
-public javax.swing.JLabel getForgotPassword(){
- return forgotPassword;
- 
-}
+    public void loginUser(ActionListener listener) {
+        login.addActionListener(listener);
+    }
 
+    public javax.swing.JLabel getForgotPassword() {
+        return forgotPassword;
+    }
+    public javax.swing.JButton getLoginButton(){
+        return login;
+    }
+    public javax.swing.JButton getShowButton(){
+        return show;
+    }
+    public javax.swing.JLabel getForgotLabel(){
+        return forgotPassword;
+    }
 
-public void forgotPassword(MouseListener listener){
-    forgotPassword.addMouseListener(listener);}
-public void login(MouseListener listener){
-    login.addMouseListener(listener);}
+    public void forgotPassword(MouseListener listener) {
+        forgotPassword.addMouseListener(listener);
+    }
 
+    public void login(MouseListener listener) {
+        login.addMouseListener(listener);
+    }
+    
+    public void showPasswordButtonListener(ActionListener listener) {
+        show.addActionListener(listener);
+    }
 
-public void showPasswordButtonListener(ActionListener listener){
-show.addActionListener(listener);}
-public void tooglePasswordField(boolean visible){
-password.setEchoChar(visible ? (char) 0:'*');
-show.setText(visible ? "Hide":"Show");}}
+    public void tooglePasswordField(boolean visible) {
+        password.setEchoChar(visible ? (char) 0 : '*');
+        show.setText(visible ? "Hide" : "Show");
+    }}

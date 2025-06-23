@@ -6,6 +6,8 @@
 package bindle_project.View;
 
 import bindle_project.Controller.Listcontroller;
+import bindle_project.Controller.LoginController;
+import bindle_project.Model.AuthModel;
 import bindle_project.Model.User;
 import bindle_project.Model.WishlistModel;
 import java.awt.BorderLayout;
@@ -257,6 +259,10 @@ public void updateCartDisplay(int itemCount) {
                 new HomeScreen().setVisible(true);
             }
         });
+        LoginView loginView = new LoginView();
+    AuthModel authModel = new AuthModel(); // Ensure AuthModel is initialized
+    LoginController loginController = new LoginController(loginView, authModel);
+    loginController.open();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

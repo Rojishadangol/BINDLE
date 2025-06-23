@@ -15,6 +15,7 @@ public class AuthModel {
         }
         if (UserDao.register(email, password, name)) {
             return new UserData(0, email, name, false); // ID 0 as placeholder, verified = false
+        } else {
         }
         return null;
     }
