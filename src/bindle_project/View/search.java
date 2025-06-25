@@ -85,7 +85,10 @@ public class search extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+<<<<<<< HEAD
         jTextField1 = new javax.swing.JTextField();
+=======
+>>>>>>> fce85f403b3ff1b954eef70dccf0f82d19a6b2fd
 
         jLabel7.setText("jLabel7");
 
@@ -109,7 +112,41 @@ public class search extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+<<<<<<< HEAD
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 111, -1, -1));
+=======
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel1.setText("BOOKS");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 215, 54));
+
+        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jButton1.setText("SHOP NOW");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel2.setText("FOR");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        jLabel3.setText("ALL");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        jLabel4.setText("FICTION, NON-FICTION, TAROT/ORACLE CARDS, MAPS,");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, 23));
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 10)); // NOI18N
+        jLabel5.setText("GUIDES,JOURNAL,AND MANY MORE");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 111, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 257, -1));
+>>>>>>> fce85f403b3ff1b954eef70dccf0f82d19a6b2fd
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,6 +162,7 @@ public class search extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(539, 477, -1, -1));
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(917, 6, -1, -1));
 
+<<<<<<< HEAD
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
         CartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/CART.png"))); // NOI18N
@@ -158,10 +196,15 @@ public class search extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel1.setText("BOOKS");
+=======
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/books-2.jpg"))); // NOI18N
+        jLabel9.setText("jLabel9");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 220, 210));
+>>>>>>> fce85f403b3ff1b954eef70dccf0f82d19a6b2fd
 
-        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 5)); // NOI18N
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/Logo.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newlogo.png"))); // NOI18N
         jLabel11.setText("jLabel11");
+<<<<<<< HEAD
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -248,6 +291,9 @@ public class search extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 430));
+=======
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 50));
+>>>>>>> fce85f403b3ff1b954eef70dccf0f82d19a6b2fd
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -299,7 +345,10 @@ public class search extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+<<<<<<< HEAD
     private javax.swing.JLabel jLabel14;
+=======
+>>>>>>> fce85f403b3ff1b954eef70dccf0f82d19a6b2fd
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

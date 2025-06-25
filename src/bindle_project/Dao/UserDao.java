@@ -7,6 +7,8 @@ package bindle_project.Dao;
 import bindle_project.Controller.Mail.SMTPSMailSender;
 import bindle_project.Model.User;
 import bindle_project.Model.LoginRequest;
+import bindle_project.Database.MySqlConnection;
+import bindle_project.Model.UserData;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -116,3 +118,4 @@ public class UserDao {
 }
 
 }
+

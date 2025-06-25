@@ -1,28 +1,32 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package bindle_project.Controller;
 
-import bindle_project.Dao.PurchaseDao;
-import bindle_project.View.HomeScreen;
+import bindle_project.Dao.SecurePurchaseDao;
+import bindle_project.Model.SecurePurchaseData;
+import dao.SecurePurchaseDAO;
+//import model.SecurePurchase;
+import java.sql.SQLException;
 
-/**
- *
- * @author acer
- */
 public class PurchaseController {
-    private HomeScreen view;
-    private PurchaseDao purchaseDao;
-    private int userId;
+    private SecurePurchaseDao dao;
 
-    public PurchaseController(HomeScreen view, int userId) {
-        this.view = view;
-        this.purchaseDao = new PurchaseDao();
-        this.userId = userId;
+    public PurchaseController(SecurePurchaseDao dao) {
+        this.dao = dao;
     }
 
-    public void purchaseBook(int bookId) {
-        purchaseDao.purchaseBook(bookId, userId);
+    public boolean makeSecurePurchase(int buyerId, int sellerId, int bookId) {
+        SecurePurchaseData purchase = new SecurePurchaseData(buyerId, sellerId, bookId, "Pending");
+        try {
+            return dao.insertPurchase(purchase);
+            
+        } catch (SQLException e) {
+            System.out.println("Error inserting purchase: " + e.getMessage());
+            return false;
+        }
     }
 }
