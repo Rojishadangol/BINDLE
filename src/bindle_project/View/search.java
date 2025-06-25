@@ -2,60 +2,60 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package bindle_project.View;
-
-import bindle_project.Model.User;
-import bindle_project.Model.WishlistModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
-
-/**
- *
- * @author ushadhakal
- */
-public class search extends javax.swing.JFrame {
-
-    /**
-     * Creates new form search
-     */
-    public search() {
-        initComponents();
-        setSize(800, 600); // Set desired window size
-        homeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                navigateToHome();
-            }
-        });
-
-        // Wishlist button navigation (from heartButton)
-        HeartButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                navigateToWishlist();
-            }
-        });
-
-        // Search navigation
-//        searchTextField.addActionListener(new ActionListener() {
+//package bindle_project.View;
+//
+//import bindle_project.Model.User;
+//import bindle_project.Model.WishlistModel;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
+//import java.awt.event.MouseAdapter;
+//import java.awt.event.MouseEvent;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.SQLException;
+//import javax.swing.JOptionPane;
+//
+///**
+// *
+// * @author ushadhakal
+// */
+//public class search extends javax.swing.JFrame {
+//
+//    /**
+//     * Creates new form search
+//     */
+//    public search() {
+//        initComponents();
+//        setSize(800, 600); // Set desired window size
+//        homeButton.addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
-//                navigateToSearch();
+//                navigateToHome();
 //            }
 //        });
-        CartButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                navigateToCart();
-            }
-        });
-    }
+//
+//        // Wishlist button navigation (from heartButton)
+//        HeartButton.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                navigateToWishlist();
+//            }
+//        });
+//
+//        // Search navigation
+////        searchTextField.addActionListener(new ActionListener() {
+////            @Override
+////            public void actionPerformed(ActionEvent e) {
+////                navigateToSearch();
+////            }
+////        });
+//        CartButton.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                navigateToCart();
+//            }
+//        });
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -305,37 +305,37 @@ public class search extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new search().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new search().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CartButton;
@@ -362,68 +362,68 @@ public class search extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-private void navigateToHome() {
-        this.dispose();
-        new HomeScreen().setVisible(true);
-        
-    }
-
-     private void navigateToWishlist() {
-        System.out.println("Attempting to navigate to Wishlist");
-        try {
-            Connection connection = getDbConnection();
-            if (connection != null) {
-                // Use a valid User constructor with placeholder values
-                User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder User
-                WishlistModel model = new WishlistModel(currentUser, connection);
-                WishlistScreen wishlist = new WishlistScreen(model);
-                System.out.println("WishlistScreen created successfully");
-                wishlist.setVisible(true);
-                System.out.println("WishlistScreen set visible");
-                this.setVisible(false);
-            } else {
-                System.out.println("Database connection failed, cannot navigate to Wishlist");
-            }
-        } catch (Exception e) {
-            System.out.println("Error navigating to Wishlist: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-     private Connection getDbConnection() {
-        System.out.println("Attempting to connect to database...");
-        try {
-            String url = "jdbc:mysql://localhost:3306/JavaProjectBindle"; // Ensure this matches your setup
-            String user = "root"; // Default MySQL username, adjust if changed
-            String password = "roji@123"; // Default password might be empty, adjust if set
-            System.out.println("Using URL: " + url + ", User: " + user);
-            Connection conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Database connection established successfully");
-            return conn;
-        } catch (SQLException e) {
-            System.out.println("Failed to connect to database: " + e.getMessage());
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-
-    private void navigateToSearch() {
-        BookGridScreen search = new BookGridScreen();
-        search.setVisible(true);
-        this.setVisible(false);
-    }
-    private void navigateToCart() {
-        System.out.println("Attempting to navigate to Cart");
-        try {
-            CartScreen cart = new CartScreen(currentUser);
-            System.out.println("CartScreen created successfully");
-            cart.setVisible(true);
-            System.out.println("CartScreen set visible");
-            this.setVisible(false);
-        } catch (Exception e) {
-            System.out.println("Error navigating to Cart: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-}
+//private void navigateToHome() {
+//        this.dispose();
+//        new HomeScreen().setVisible(true);
+//        
+//    }
+//
+//     private void navigateToWishlist() {
+//        System.out.println("Attempting to navigate to Wishlist");
+//        try {
+//            Connection connection = getDbConnection();
+//            if (connection != null) {
+//                // Use a valid User constructor with placeholder values
+//                User currentUser = new User(1, "user@example.com", "password123", "Test User", false); // Placeholder User
+//                WishlistModel model = new WishlistModel(currentUser, connection);
+//                WishlistScreen wishlist = new WishlistScreen(model);
+//                System.out.println("WishlistScreen created successfully");
+//                wishlist.setVisible(true);
+//                System.out.println("WishlistScreen set visible");
+//                this.setVisible(false);
+//            } else {
+//                System.out.println("Database connection failed, cannot navigate to Wishlist");
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Error navigating to Wishlist: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
+//     private Connection getDbConnection() {
+//        System.out.println("Attempting to connect to database...");
+//        try {
+//            String url = "jdbc:mysql://localhost:3306/JavaProjectBindle"; // Ensure this matches your setup
+//            String user = "root"; // Default MySQL username, adjust if changed
+//            String password = "roji@123"; // Default password might be empty, adjust if set
+//            System.out.println("Using URL: " + url + ", User: " + user);
+//            Connection conn = DriverManager.getConnection(url, user, password);
+//            System.out.println("Database connection established successfully");
+//            return conn;
+//        } catch (SQLException e) {
+//            System.out.println("Failed to connect to database: " + e.getMessage());
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+//
+//
+//    private void navigateToSearch() {
+//        BookGridScreen search = new BookGridScreen();
+//        search.setVisible(true);
+//        this.setVisible(false);
+//    }
+//    private void navigateToCart() {
+//        System.out.println("Attempting to navigate to Cart");
+//        try {
+//            CartScreen cart = new CartScreen(currentUser);
+//            System.out.println("CartScreen created successfully");
+//            cart.setVisible(true);
+//            System.out.println("CartScreen set visible");
+//            this.setVisible(false);
+//        } catch (Exception e) {
+//            System.out.println("Error navigating to Cart: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
+//}
 

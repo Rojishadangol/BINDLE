@@ -22,7 +22,7 @@ public class UserDao {
     private static final String USER = "root";
     private static final String PASSWORD = "roji@123";
 
-    public  boolean register(String email, String password, String name) {
+    public static boolean register(String email, String password, String name) {
         String sql = "INSERT INTO users (email, password, name, verified) VALUES (?, ?, ?, false)";
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -38,13 +38,9 @@ public class UserDao {
     }
 
     public static User login(LoginRequest loginRequest) {
-
-        
-    
         String sql = "SELECT id, email, name, verified, verification_token FROM users WHERE email = ? AND password = ?";
         System.out.println("Login attempt - Email: " + loginRequest.getEmail() + ", Password: " + loginRequest.getPassword());
         System.out.println("Query: " + sql + " with email: " + loginRequest.getEmail().trim().toLowerCase() + ", password: " + loginRequest.getPassword().trim());
-
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, loginRequest.getEmail().trim().toLowerCase());
@@ -117,5 +113,9 @@ public class UserDao {
     return false;
 }
 
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> main
