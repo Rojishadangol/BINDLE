@@ -52,8 +52,8 @@ public class NavigationController {
     public void goToListingScreen() {
         try {
             // Implement navigation to Listing screen
-            Listing listingScreen = new Listing();
-            listingScreen.setVisible(true);
+//            Listing listingScreen = new Listing();
+//            listingScreen.setVisible(true);
 
             // Close the current frame if it exists
             if (currentFrame != null) {

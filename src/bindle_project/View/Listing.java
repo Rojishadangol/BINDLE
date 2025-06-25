@@ -34,21 +34,14 @@ public class Listing extends javax.swing.JFrame {
     
     public Listing() {
         initComponents();
-        setTitle("Book Listing");
-        setSize(500, 400);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
         panel.add(new JLabel("Listing functionality not fully implemented."));
-        JButton addToCartButton = new JButton("Add to Cart");
-        addToCartButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                NavigationController navController = new NavigationController();
-                navController.goToCartScreen();
-        }
-        });
-        panel.add(addToCartButton);
+        JButton closeButton = new JButton("Close");
+        closeButton.addActionListener(e -> dispose());
+        panel.add(closeButton);
 
         add(panel);
         homeButton.addActionListener(new ActionListener() {
@@ -99,10 +92,10 @@ public class Listing extends javax.swing.JFrame {
         return new User(1, "user@example.com", "password123", "Test User", false); // Replace with actual user
     }
 
-//    private Book getSelectedBook(String title) {
-//        // Placeholder: Create a Book object based on the title
-//        return new Book(1, title, getAuthorForTitle(title), "Used", "available", 500); // Price from jLabel25
-//    }
+    private Book getSelectedBook(String title) {
+        // Placeholder: Create a Book object based on the title
+        return new Book(1, title, getAuthorForTitle(title), "Used", "available", 500); // Price from jLabel25
+    }
 
     private String getAuthorForTitle(String title) {
         switch (title) {

@@ -1,4 +1,3 @@
-
 package bindle_project.Controller;
 
 import bindle_project.Model.Book;
@@ -9,20 +8,15 @@ import bindle_project.View.search; // Using Search instead of BookGridScreen
 import bindle_project.View.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
-
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class HomeController {
-
     private HomeScreen view;
     private search searchScreen; // Updated from BookGridScreen
-
     private BookModel bookModel;
-    private final UserData user = null;
+    private UserData user;
 
     public HomeController(HomeScreen view) {
         System.out.println("HomeController constructor called with view: " + (view != null ? "not null" : "null"));
@@ -33,12 +27,6 @@ public class HomeController {
         this.user = user;
         this.searchScreen = new search(); // Initialize Search screen
         this.bookModel = new BookModel();
-
-
-        
-       
-   
-
 
         // Search button functionality
         if (view.getSearchButton() != null) {

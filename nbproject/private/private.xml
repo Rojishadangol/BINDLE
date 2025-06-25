@@ -3,50 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/updatecontroller.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Dao/UserDao.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Database/DbConnection.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Database/MySqlConnection.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/Book.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/ForgetPassword1.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/DeactivateAccountUI.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/Logo.png</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/LoginView.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/LoginInterfacee.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/LoginInterfaceController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/LoginController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/search.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/WishlistScreen.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/RegisterController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/.gitignore</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/ForgetPasswordController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/UpdatePasswordAction.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/UpdatePassword.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/books.jpg</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/Cart.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/Review.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/ReviewManager.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/WishlistModel.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Bindle_project.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/List.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/LoginRequest.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/Search.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/UserData.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/AuthModel.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/BookModel.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/User.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/SecurePurchaseUI.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Database/MySqlConnection.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/Mail/SMTPSMailSender.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/RegisterView.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/background.png</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/CartScreen.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/Listing.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/EditProfileView.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Model/AuthModel.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/LoginController.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/LoginView.java</file>
+            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Dao/UserDao.java</file>
             <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/HomeController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/Listcontroller.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/NavigationController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/OrderHistoryController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/ReviewController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/Controller/SearchController.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/Bindle_project/src/bindle_project/View/HomeScreen.java</file>
         </group>
     </open-files>
 </project-private>

@@ -8,28 +8,26 @@ public class Book {
     private int id;
     private String title;
     private String author;
+    private double price;
     private String condition;
     private String availability;
-    private double price;
+    private int sellerId;
 
     public Book(int id, String title, String author, String condition, String availability) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.price = price;
         this.condition = condition;
         this.availability = availability;
-        this.price = price;
+        this.sellerId = sellerId;
     }
 
-    // Getters
     public int getId() { return id; }
     public String getTitle() { return title; }
     public String getAuthor() { return author; }
+    public double getPrice() { return price; }
     public String getCondition() { return condition; }
     public String getAvailability() { return availability; }
-    public double getPrice() { return price; }
-
-    public int getSellerId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public int getSellerId() { return sellerId; }
 }

@@ -1,44 +1,101 @@
 package bindle_project.Model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
     private User user;
-    private List<Integer> bookIds;
+    private List<Book> books;
+    private Connection connection;
 
-    public Cart(User user) {
-        this.user = user;
-        this.bookIds = new ArrayList<>();
+    public Cart(int user) {
+////        if (user == null || connection == null) {
+////            throw new IllegalArgumentException("User or connection cannot be null");
+////        }
+//        this.user = user;
+//        this.books = new ArrayList<>();
+//        this.connection = connection;
+//        loadBooksFromDatabase();
     }
 
     public User getUser() {
         return user;
     }
-public boolean addBook(Book book) {
-        if (book != null && !books.contains(book)) {
-            return books.add(book);
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public boolean addBook(Book book) {
+        if (book == null || books.contains(book)) {
+            return false;
         }
-        return false;
+        try {
+            String sql = "INSERT INTO cart (user_id, book_id) VALUES (?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            stmt.setInt(2, book.getId());
+            int rowsAffected = stmt.executeUpdate();
+            stmt.close();
+            if (rowsAffected > 0) {
+                books.add(book);
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error adding book to cart: " + e.getMessage(), e);
+        }
     }
+
     public boolean removeBookFromCart(Book book) {
-        if (book == null) return false;
-        return bookIds.remove(Integer.valueOf(book.getId()));
+        if (book == null) {
+            return false;
+        }
+        try {
+            String sql = "DELETE FROM cart WHERE user_id = ? AND book_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            stmt.setInt(2, book.getId());
+            int rowsAffected = stmt.executeUpdate();
+            stmt.close();
+            if (rowsAffected > 0) {
+                books.remove(book);
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error removing book from cart: " + e.getMessage(), e);
+        }
     }
 
-    public List<Integer> getBookIds() {
-        return bookIds;
+    public List<Book> getBooks() {
+        return new ArrayList<>(books);
     }
 
-    public void addBook(int bookId) {
-        bookIds.add(bookId);
-    }
-
-    public Object getConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Iterable<Book> getBooks() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void loadBooksFromDatabase() {
+        try {
+            String sql = "SELECT b.* FROM books b JOIN cart c ON b.id = c.book_id WHERE c.user_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            ResultSet rs = stmt.executeQuery();
+            books.clear();
+            while (rs.next()) {
+                Book book = new Book(
+                    rs.getInt("id"),
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    rs.getString("condition"),
+                    rs.getString("availability"));
+                books.add(book);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error loading cart from database: " + e.getMessage(), e);
+        }
     }
 }

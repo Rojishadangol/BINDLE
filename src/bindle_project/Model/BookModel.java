@@ -8,21 +8,19 @@ import bindle_project.Dao.BookDao;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author acer
- */
 public class BookModel {
     private BookDao bookDao = new BookDao();
 
     public List<Book> searchBooks(String query) {
-        if (query == null || query.trim().isEmpty()) return new ArrayList<>();
+        if (query == null || query.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
         return bookDao.searchBooks(query);
     }
 
     public boolean addBook(String title, String author, double price, String condition, int sellerId) {
         if (title == null || author == null || condition == null) {
-            return false; // Validation
+            return false;
         }
         return bookDao.addBook(title, author, price, condition, sellerId);
     }
