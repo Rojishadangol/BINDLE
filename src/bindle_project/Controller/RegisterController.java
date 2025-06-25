@@ -4,7 +4,10 @@
  */
 package bindle_project.Controller;
 
+
 import bindle_project.Model.AuthModel;
+
+
 import bindle_project.Model.UserData;
 import bindle_project.View.LoginView;
 import bindle_project.View.RegisterView;
@@ -30,12 +33,41 @@ public class RegisterController {
         view.registerUser(new RegisterUser());
         view.showPasswordButtonListener(new ShowPasswordListener());
         view.showPasswordButtonListener1(new ShowPasswordListener1());
-        view.getAlreadyHaveAnAccount().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                navigateToLogin();
-            }
-        });
+
+
+    }
+    public void open(){
+    view.setVisible(true);
+    }
+    public void close(){
+    view.dispose();
+    }
+    
+    class RegisterUser implements ActionListener{
+    @Override
+    public void actionPerformed(ActionEvent e){
+    String name= view.getNameTextField().getText();
+    String email=view.getEmailTextField().getText();
+    String password=
+            String.valueOf(view.getPasswordField().getPassword());
+    String confirmPassword=
+            String.valueOf(view.getConfirmPassword().getPassword());
+    if (name.isEmpty()||email.isEmpty()||password.isEmpty()|confirmPassword.isEmpty()){
+        JOptionPane.showMessageDialog(view,"Fill in this field");
+    }
+    else if(!password.equals(confirmPassword)){
+        JOptionPane.showMessageDialog(view,"Passwords do not match");
+    }
+    else{
+    UserDao userDao=new UserDao();
+    UserData user= new UserData(name,email,password);
+    boolean result=userDao.register(user);
+    if (result){
+                JOptionPane.showMessageDialog(view,"Registered Successfully");
+                
+            }else{
+               JOptionPane.showMessageDialog(view,"Failed to Register");
+
         view.getSendOtpButton().addActionListener(new SendOtpListener());
     }
 

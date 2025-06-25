@@ -2,7 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+<<<<<<< HEAD
 package bindle_project.View;
+<<<<<<< HEAD
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+
+import java.io.File;
+=======
+package view;
+>>>>>>> fce85f403b3ff1b954eef70dccf0f82d19a6b2fd
+=======
+>>>>>>> main
 
 /**
  *
