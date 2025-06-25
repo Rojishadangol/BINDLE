@@ -4,10 +4,11 @@
  */
 package bindle_project.View;
 
-import bindle_project.View.RegisterView;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 
 /**
  *
@@ -16,10 +17,20 @@ import javax.swing.JOptionPane;
 public class LoginView extends javax.swing.JFrame {
 
     /**
-     * Creates new form LoginVieww
+     * Creates new form LoginView
      */
     public LoginView() {
         initComponents();
+                setVisible(true);
+//                login.addActionListener(e -> System.out.println("Test: Login button works"));
+//    forgotPassword.addMouseListener(new MouseAdapter() {
+//        @Override
+//        public void mouseClicked(MouseEvent e) {
+//            System.out.println("Test: Forgot Password works");
+//        }
+//    });
+
+        
     }
 
     /**
@@ -39,99 +50,40 @@ public class LoginView extends javax.swing.JFrame {
         show = new javax.swing.JButton();
         forgotPassword = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Login");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 150, -1));
 
         jLabel2.setText("Email");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 37, -1));
 
         jLabel3.setText("Password");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 60, -1));
 
         login.setText("Login");
-
-        email.setText("jTextField1");
+        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 440, -1, -1));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 230, -1));
 
         show.setText("Show");
+        getContentPane().add(show, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, -1, -1));
 
         forgotPassword.setText("Forgot Password");
+        getContentPane().add(forgotPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 100, -1));
+        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, 230, -1));
 
-        password.setText("jPasswordField1");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setText("Welcome to Bindle");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 250, 60));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/graphic-design-illustration-of-a-stack-of-encyclopedia-books-background-with-blank-area-free-vector.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bindle_project/View/WhatsApp Image 2025-06-11 at 8.10.57 AM.jpeg"))); // NOI18N
         jLabel5.setText("jLabel5");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(170, 170, 170)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(310, 310, 310)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(300, 300, 300)
-                            .addComponent(login))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(170, 170, 170)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(240, 240, 240)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(490, 490, 490)
-                            .addComponent(show))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(290, 290, 290)
-                            .addComponent(forgotPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(240, 240, 240)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(280, 280, 280)
-                            .addComponent(jLabel3))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(140, 140, 140)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(360, 360, 360)
-                            .addComponent(login))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(230, 230, 230)
-                            .addComponent(jLabel2))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(280, 280, 280)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(280, 280, 280)
-                            .addComponent(show))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(330, 330, 330)
-                            .addComponent(forgotPassword))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(230, 230, 230)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -140,46 +92,19 @@ public class LoginView extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
+         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (Exception ex) {
             java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginView().setVisible(true);
-                new RegisterView().setVisible(true);
-                JOptionPane.showMessageDialog(null, "Registered successfully!");
-this.dispose();  
-            }
-
-            private void dispose() {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-            
-                        
-            
-        });
+        java.awt.EventQueue.invokeLater(() -> new LoginView().setVisible(true));
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -188,28 +113,50 @@ this.dispose();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton login;
     private javax.swing.JPasswordField password;
     private javax.swing.JButton show;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JTextField getPasswordField(){
-return password;
-}
-public javax.swing.JTextField getEmail(){
-return email;
-}
+public javax.swing.JPasswordField getPasswordField() {
+        return password;
+    }
 
-public void loginUser(ActionListener listener){
-    login.addActionListener(listener);
-}
+    public javax.swing.JTextField getEmail() {
+        return email;
+    }
 
-public void forgotPassword(MouseListener listener){
-    forgotPassword.addMouseListener(listener);}
+    public void loginUser(ActionListener listener) {
+        login.addActionListener(listener);
+    }
 
-public void showPasswordButtonListener(ActionListener listener){
-show.addActionListener(listener);}
-public void tooglePasswordField(boolean visible){
-password.setEchoChar(visible ? (char) 0:'*');
-show.setText(visible ? "Hide":"Show");}
-}
+    public javax.swing.JLabel getForgotPassword() {
+        return forgotPassword;
+    }
+    public javax.swing.JButton getLoginButton(){
+        return login;
+    }
+    public javax.swing.JButton getShowButton(){
+        return show;
+    }
+    public javax.swing.JLabel getForgotLabel(){
+        return forgotPassword;
+    }
+
+    public void forgotPassword(MouseListener listener) {
+        forgotPassword.addMouseListener(listener);
+    }
+
+    public void login(MouseListener listener) {
+        login.addMouseListener(listener);
+    }
+    
+    public void showPasswordButtonListener(ActionListener listener) {
+        show.addActionListener(listener);
+    }
+
+    public void tooglePasswordField(boolean visible) {
+        password.setEchoChar(visible ? (char) 0 : '*');
+        show.setText(visible ? "Hide" : "Show");
+    }}

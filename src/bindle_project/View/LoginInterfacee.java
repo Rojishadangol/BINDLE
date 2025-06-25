@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view;
+package bindle_project.View;
 
 /**
  *
@@ -77,7 +77,6 @@ public class LoginInterfacee extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/circle 2.png"))); // NOI18N
         jLabel8.setText("jLabel8");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -283,5 +282,20 @@ public javax.swing.JTextField getPhoneField() {
 public javax.swing.JTextField getAddressField() {
     return address;
 }
-
+//private Connection getDbConnection() {
+//        System.out.println("Attempting to connect to database...");
+//        Connection conn = null;
+//        try {
+//            String url = "jdbc:mysql://localhost:3306/JavaProjectBindle";
+//            String user = "root";
+//            String password = "roji@123";
+//            System.out.println("Using URL: " + url + ", User: " + user);
+//            conn = DriverManager.getConnection(url, user, password);
+//            System.out.println("Database connection established successfully");
+//        } catch (SQLException e) {
+//            System.out.println("Failed to connect to database: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//        return conn;
+//    }
 }
