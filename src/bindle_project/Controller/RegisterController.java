@@ -9,6 +9,7 @@ import bindle_project.Model.UserData;
 import bindle_project.View.LoginView;
 import bindle_project.View.RegisterView;
 import bindle_project.Controller.Mail.SMTPSMailSender;
+import bindle_project.Model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -74,7 +75,7 @@ public class RegisterController {
                 return;
             }
 
-            UserData userData = authModel.register(email, password, name);
+            User userData = authModel.register(email, password, name);
             if (userData != null) {
                 JOptionPane.showMessageDialog(view, "Registered Successfully");
                 view.setOtpFieldVisible(false);

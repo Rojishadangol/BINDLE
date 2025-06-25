@@ -9,6 +9,8 @@
 <!-- in the project's Project Properties dialog box.-->
 <project name="Bindle_project" default="default" basedir=".">
     <description>Builds, tests, and runs the project Bindle_project.</description>
+<project name="Bindle_project" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Bindle_project.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
@@ -58,6 +60,7 @@
 
     An example of overriding the target for project execution could look like this:
 
+        <target name="run" depends="Bindle_project-impl.jar">
         <target name="run" depends="Bindle_project-impl.jar">
             <exec dir="bin" executable="launcher.exe">
                 <arg file="${dist.jar}"/>

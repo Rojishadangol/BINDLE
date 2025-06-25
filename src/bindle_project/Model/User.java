@@ -6,25 +6,21 @@ package bindle_project.Model;
 
 import java.util.Objects;
 
-/**
- *
- * @author acer
- */
 public class User {
     private int id;
     private String email;
-    private String password; // Should be hashed in production and not exposed
+    private String password;
     private String name;
     private boolean verified;
-    private String verificationToken; // Added for email verification
+    private String verificationToken;
 
     public User(int id, String email, String password, String name, boolean verified) {
         this.id = id;
         this.email = email;
-        this.password = password; // For internal use only, should be hashed
+        this.password = password;
         this.name = name;
         this.verified = verified;
-        this.verificationToken = null; // Default to null, set during registration
+        this.verificationToken = null;
     }
 
     public User(int id, String email, String name, boolean verified, String verificationToken) {
@@ -33,19 +29,19 @@ public class User {
         this.name = name;
         this.verified = verified;
         this.verificationToken = verificationToken;
-        this.password = null; // Password not needed if fetched separately
+        this.password = null;
     }
 
-    // Getters
     public int getId() { return id; }
     public String getEmail() { return email; }
-    public String getPassword() { return password; } // Remove or secure in production
+    public String getPassword() { return password; }
     public String getName() { return name; }
     public boolean isVerified() { return verified; }
     public String getVerificationToken() { return verificationToken; }
 
-    // Setters (for internal use)
-    public void setVerificationToken(String verificationToken) { this.verificationToken = verificationToken; }
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
+    }
 
     @Override
     public boolean equals(Object o) {
